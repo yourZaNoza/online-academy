@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Курсы — Кисловодская Онлайн-Академия искусств</title>
+    <meta
+      name="description"
+      content="Дистанционные курсы рисования и живописи для детей и взрослых: от знакомства с кистями до портфолио и подготовки к поступлению."
+    />
+    <link rel="icon" type="image/svg+xml" href="/icons/icon%20light.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&family=Open+Sans:wght@600;700;800&display=swap"
+    />
+    <script type="module" src="/src/pages/courses/courses.ts"></script>
+  </head>
+  <body class="font-body">
+    <header id="site-header" class="site-header"></header>
+
+    <main>
+      <!-- ===== Курсы в художественной академии ===== -->
+      <section class="section section--paper page-intro">
+        <span class="blob blob--yellow" style="width: 260px; height: 260px; top: -140px; right: 6%"></span>
+
+        <div class="container page-lead">
+          <h1 class="font-display font-extrabold text-4xl sm:text-5xl leading-tight m-0 animate-fade-up">
+            Курсы в художественной академии
+          </h1>
+          <p class="text-lg mt-4 animate-fade-up [animation-delay:120ms]">
+            Дистанционные программы для всех возрастов — от знакомства с кистями до собственного портфолио и подготовки
+            к поступлению.
+          </p>
+          <p class="counter text-sm font-bold text-ink-soft animate-fade-up [animation-delay:200ms]" id="course-count" aria-live="polite"></p>
+        </div>
+      </section>
+
+      <!-- ===== Каталог ===== -->
+      <section class="section section--paper courses-section">
+        <div class="container">
+          <div class="pills animate-fade-up [animation-delay:260ms]" id="course-filters" role="tablist" aria-label="Для кого курс"></div>
+          <div class="courses-grid" id="course-grid"></div>
+        </div>
+      </section>
+
+      <!-- ===== Формат обучения ===== -->
+      <section class="section section--paper plans-section">
+        <div class="container">
+          <div class="page-lead" data-reveal>
+            <h2 class="font-display font-extrabold text-4xl sm:text-5xl leading-tight m-0">Формат обучения</h2>
+            <p class="text-lg mt-4 mb-0">
+              Выберите удобный формат ознакомления с курсом. Стоимость формата не входит в стоимость курсов.
+            </p>
+            <p class="counter counter--dark text-sm font-bold text-ink-soft mb-10" id="plans-count"></p>
+          </div>
+          <div class="plans-grid" id="plans-grid"></div>
+        </div>
+      </section>
+    </main>
+
+    <footer id="site-footer" class="site-footer"></footer>
+  </body>
+</html>

@@ -1,0 +1,310 @@
+/* Стили страницы «Курсы». Общие элементы — в src/style.css */
+
+.page-intro {
+  padding-top: 56px;
+  padding-bottom: 32px;
+}
+
+.page-intro p {
+  margin: 0;
+}
+
+.page-lead {
+  padding-left: 64px;
+}
+
+.counter {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px !important;
+}
+
+.counter::before {
+  content: "";
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--color-orange);
+}
+
+.counter--dark::before {
+  background: var(--color-ink);
+}
+
+.courses-section {
+  padding-top: 0;
+}
+
+.courses-section .pills {
+  margin-bottom: 36px;
+}
+
+/* ---------- Карточка курса ---------- */
+
+.courses-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+.course {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 50px 18px 20px;
+  border: 1.5px solid var(--color-ink);
+  border-radius: 24px;
+  background: #fff;
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+
+.course:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 30px rgb(46 26 71 / 0.1);
+}
+
+.course__age {
+  position: absolute;
+  z-index: 1;
+  top: 18px;
+  right: 8px;
+  padding: 16px 32px;
+  border: 1.5px solid var(--color-ink);
+  border-radius: 999px;
+  background: var(--color-yellow);
+}
+
+.course__cover {
+  display: grid;
+  place-items: center;
+  height: 148px;
+  margin-bottom: 14px;
+  overflow: hidden;
+  border-radius: 20px;
+}
+
+.course__cover--peach {
+  background: var(--color-peach);
+}
+
+.course__cover--cream {
+  background: var(--color-cream);
+}
+
+.course__cover--lavender {
+  background: var(--color-lavender);
+}
+
+.course__icon {
+  width: 48px;
+  height: 48px;
+}
+
+.course__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.course__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  margin: 0;
+  padding: 0 4px;
+  list-style: none;
+}
+
+.course__tag {
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: #ffe8d6;
+  color: #f0671c;
+}
+
+.course h3,
+.course__text,
+.course__footer {
+  padding-inline: 4px;
+}
+
+.course__text {
+  flex: 1;
+  margin: 0;
+}
+
+.course__footer {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 8px;
+}
+
+.btn--sm {
+  padding: 12px 20px;
+}
+
+.courses__empty {
+  grid-column: 1 / -1;
+  margin: 0;
+  padding: 48px 32px;
+  border: 1.5px dashed #8b7ba6;
+  border-radius: 24px;
+  text-align: center;
+}
+
+/* ---------- Форматы обучения ---------- */
+
+.plans-section {
+  padding-top: 24px;
+}
+
+.plans-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  align-items: stretch;
+}
+
+.plan {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  overflow: hidden;
+  padding: 30px 24px 32px;
+}
+
+.plan > * {
+  position: relative;
+}
+
+.plan__decor {
+  position: absolute !important;
+  right: -24px;
+  top: 38%;
+  width: 150px;
+  opacity: 0.07;
+  transform: rotate(-12deg);
+  pointer-events: none;
+}
+
+.plan__name {
+  align-self: center;
+  margin-bottom: 18px !important;
+  padding: 0.05em 0.4em 0.12em;
+  border-radius: 6px;
+}
+
+.plan__name--orange {
+  background: var(--color-orange);
+  color: #fff;
+  transform: rotate(-1deg);
+}
+
+.plan__name--light {
+  background: #fff6de;
+  color: var(--color-ink);
+  transform: rotate(-0.5deg);
+}
+
+.plan__name--yellow {
+  background: var(--color-yellow);
+  color: var(--color-ink);
+  transform: rotate(-1deg);
+}
+
+.plan__name--dark {
+  background: var(--color-ink);
+  color: #fff;
+  transform: rotate(-1deg);
+}
+
+.plan__features {
+  display: grid;
+  gap: 14px;
+  margin: 0 0 28px;
+  padding: 0;
+  list-style: none;
+}
+
+.plan__features li {
+  position: relative;
+  padding-left: 26px;
+}
+
+.plan__features .is-included::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 5px;
+  width: 14px;
+  height: 14px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%232e1a47' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 8.5l3 3L13 4.5'/%3E%3C/svg%3E")
+    center / contain no-repeat;
+}
+
+.plan__features .is-excluded {
+  color: #a59dac;
+}
+
+.plan__price {
+  display: grid;
+  gap: 8px;
+  margin-top: auto;
+  margin-bottom: 36px;
+}
+
+.plan__old {
+  color: #a59dac;
+}
+
+.plan__extra,
+.plan__free {
+  color: var(--color-orange);
+}
+
+.plan .btn {
+  align-self: center;
+}
+
+/* ---------- Адаптив ---------- */
+
+@media (max-width: 1200px) {
+  .plans-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 1024px) {
+  .courses-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .page-lead {
+    padding-left: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .courses-grid,
+  .plans-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .plans-grid {
+    gap: 20px;
+  }
+
+  .course__age {
+    padding: 12px 22px;
+  }
+
+  .plan {
+    padding: 28px 22px 32px;
+  }
+}
