@@ -64,8 +64,8 @@ export function renderConsultation(root: HTMLElement): void {
               <input type="checkbox" name="consent" />
               <span>
                 Соглашаюсь на обработку моих персональных данных в соответствии с
-                <a href="#" class="font-bold underline underline-offset-2">Политикой обработки персональных данных</a> и
-                <a href="#" class="font-bold underline underline-offset-2">Согласием</a>.
+                <a href="${CONTACTS.links.privacy}" class="font-bold underline underline-offset-2" target="_blank">Политикой обработки персональных данных</a> и
+                <a href="${CONTACTS.links.consent}" class="font-bold underline underline-offset-2" target="_blank">Согласием</a>.
               </span>
               <span class="field__error text-xs"></span>
             </label>

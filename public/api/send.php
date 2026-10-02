@@ -69,8 +69,13 @@ if ($errors) {
     respond(422, ['ok' => false, 'error' => 'validation', 'fields' => $errors]);
 }
 
+// Откуда пришёл посетитель (utm-метки или сайт-источник) — есть, только если он согласился на cookie
+$source = mb_substr(trim(preg_replace('/\s+/u', ' ', (string)($_COOKIE['lead_source'] ?? '')) ?? ''), 0, 300);
+
 $subject = "Заявка с сайта: {$name}, {$phone}, звонок {$callTime}";
-$body = $message . "\n\n—\nПочта для ответа: {$email}\nОтправлено с формы на сайте.";
+$body = $message . "\n\n—\nПочта для ответа: {$email}\n"
+    . ($source !== '' ? "Источник: {$source}\n" : '')
+    . 'Отправлено с формы на сайте.';
 
 try {
     smtp_send($config, $config['to'], $email, $subject, $body);

@@ -6,7 +6,7 @@ const pagesDir = resolve(import.meta.dirname, 'pages');
 
 // Страницы сайта: папка с index.html внутри pages/ → адрес /папка/.
 // Новую страницу добавьте сюда, иначе она не попадёт в сборку.
-const pages = ['courses', 'masterclasses', 'contests', 'contacts'];
+const pages = ['courses', 'masterclasses', 'contests', 'contacts', 'agreement', 'privacy', 'consent'];
 
 export default defineConfig({
   // HTML-страницы лежат в pages/, код — в src/, картинки и иконки — в public/

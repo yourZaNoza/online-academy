@@ -1,5 +1,6 @@
 import { CONTACTS, SITE_NAME } from '../content/site';
 import { $, asset } from '../utils/dom';
+import { hasConsent, onConsent } from '../utils/consent';
 
 export function renderFooter(root: HTMLElement): void {
   const year = new Date().getFullYear();
@@ -28,7 +29,7 @@ export function renderFooter(root: HTMLElement): void {
 
           <div class="rating">
             <span class="font-display font-bold">${CONTACTS.rating}</span>
-            <span class="text-yellow tracking-wider" aria-label="5 из 5">★★★★★</span>
+            <span class="text-yellow tracking-wider" aria-label="${CONTACTS.rating} из 5">★★★★★</span>
             <span class="text-xs font-semibold text-ink-soft">Рейтинг организации в Яндексе</span>
           </div>
         </div>
@@ -44,8 +45,8 @@ export function renderFooter(root: HTMLElement): void {
             <p><b>Адрес:</b> ${CONTACTS.address}</p>
           </div>
           <div class="socials">
-            <a href="${links.vk}" aria-label="ВКонтакте"><img src="/icons/vk.jpg" alt="" /></a>
-            <a href="${links.telegram}" aria-label="Telegram"><img src="/icons/tg.jpg" alt="" /></a>
+            <a href="${links.vk}" aria-label="ВКонтакте" target="_blank" rel="noopener"><img src="/icons/vk.jpg" alt="" /></a>
+            <a href="${links.telegram}" aria-label="Telegram" target="_blank" rel="noopener"><img src="/icons/tg.jpg" alt="" /></a>
           </div>
         </div>
       </div>
@@ -54,15 +55,43 @@ export function renderFooter(root: HTMLElement): void {
         <button class="to-top" type="button" aria-label="Наверх">
           <img src="/icons/up.svg" alt="" />
         </button>
-        <p class="m-0 text-sm font-semibold">
-          © 2020 – ${year} ${SITE_NAME}. Все права защищены.
-          <a href="${links.privacy}" class="underline underline-offset-2">Политика конфиденциальности</a>
-        </p>
+        <div class="site-footer__legal text-sm font-semibold">
+          <p class="m-0">© 2020 – ${year} ${SITE_NAME}. Все права защищены.</p>
+          <nav class="site-footer__docs" aria-label="Документы">
+            <a href="${links.privacy}" class="underline underline-offset-2">Политика конфиденциальности</a>
+            <a href="${links.agreement}" class="underline underline-offset-2">Пользовательское соглашение</a>
+            <a href="${links.consent}" class="underline underline-offset-2">Согласие на обработку данных</a>
+          </nav>
+        </div>
       </div>
     </div>`;
 
   $('.to-top', root).addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-  loadMap($('#map', root));
+  initMap($('#map', root));
+}
+
+/**
+ * Карта Яндекса ставит свои cookie, поэтому загружается только с согласия посетителя.
+ * Без согласия — заглушка с кнопкой «Показать карту» (нажатие = согласие только на карту).
+ */
+function initMap(container: HTMLElement): void {
+  let started = false;
+  const start = (): void => {
+    if (started) return;
+    started = true;
+    container.innerHTML = '';
+    loadMap(container);
+  };
+
+  if (hasConsent()) return start();
+  container.innerHTML = `
+    <div class="map__consent">
+      <img src="${asset('/icons/point.svg')}" alt="" width="36" height="36" />
+      <p class="text-xs font-semibold m-0">Карта Яндекса использует cookie. Показать её?</p>
+      <button type="button" class="btn map__show text-xs font-bold">Показать карту</button>
+    </div>`;
+  $('.map__show', container).addEventListener('click', start);
+  onConsent(start);
 }
 
 /** Подключает карту Яндекса, когда подвал подходит к экрану, — чтобы не тормозить загрузку страницы. */

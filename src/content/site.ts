@@ -1,6 +1,15 @@
 // Общие данные сайта: меню и контакты. Правьте здесь — изменения попадут на все страницы.
 
-export type PageId = 'academy' | 'courses' | 'masterclasses' | 'contests' | 'contacts';
+// agreement, privacy, consent — страницы документов, в меню их нет
+export type PageId =
+  | 'academy'
+  | 'courses'
+  | 'masterclasses'
+  | 'contests'
+  | 'contacts'
+  | 'agreement'
+  | 'privacy'
+  | 'consent';
 
 export interface NavItem {
   id: PageId;
@@ -45,15 +54,23 @@ export const CONTACTS = {
   /** Телефон из сообщения об ошибке отправки формы */
   hotline: '8 800 555 35 35',
   address: '357700, Ставропольский край, г. Кисловодск, пр.&nbsp;Победы,&nbsp;37А',
-  rating: '5,0',
+  rating: '4,9',
   links: {
     orgInfo: 'https://kislovodskacademyofart-school.profiedu.ru/sveden/common',
     govSite: 'https://kislovodskacademyofart-school.profiedu.ru/',
-    privacy: '#',
-    vk: '#',
-    telegram: '#',
+    privacy: '/privacy/',
+    agreement: '/agreement/',
+    consent: '/consent/',
+    vk: 'https://vk.ru/club219874819',
+    telegram: 'https://t.me/akademia_iskystv',
   },
   /** Карта из конструктора Яндекс.Карт: id карты — параметр um. height должна совпадать с высотой .map в styles/footer.css */
   mapWidget:
     'https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A0273ffdf6a900bd4a8d90f2c9d6c8fd9cb03c47ccdc388835294b30d88c1e68f&width=100%25&height=232&lang=ru_RU&scroll=true',
 };
+
+/**
+ * Номер счётчика Яндекс.Метрики (metrika.yandex.ru → настройки счётчика).
+ * 0 — Метрика выключена. Включается только у посетителей, нажавших «Согласен» в cookie-баннере.
+ */
+export const METRIKA_ID = 0;
