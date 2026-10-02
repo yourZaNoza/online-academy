@@ -1,8 +1,8 @@
-import './style.css';
-import { renderHeader } from './components/header';
-import { renderFooter } from './components/footer';
-import type { PageId } from './data/site';
-import { $ } from './utils/dom';
+import '../styles/index.css';
+import { renderHeader } from './header';
+import { renderFooter } from './footer';
+import type { PageId } from '../content/site';
+import { $ } from '../utils/dom';
 
 /**
  * Общий запуск для каждой страницы: шапка и подвал.

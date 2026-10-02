@@ -1,5 +1,5 @@
 import { $, asset } from '../../utils/dom';
-import { REVIEWS, type Review } from './data';
+import { REVIEWS, type Review } from '../../content/academy';
 
 const TONES = ['orange', 'dark', 'yellow'] as const;
 

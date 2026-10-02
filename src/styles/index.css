@@ -1,0 +1,11 @@
+@import "tailwindcss";
+
+/* Где Tailwind ищет классы: HTML-страницы и код */
+@source "../../pages";
+@source "../";
+
+@import "./theme.css";
+@import "./base.css";
+@import "./ui.css";
+@import "./header.css";
+@import "./footer.css";

@@ -1,6 +1,6 @@
 // Контент главной страницы. Чтобы добавить работу или отзыв — допишите объект в массив.
 
-export type Tone = 'peach' | 'cream' | 'lavender';
+import type { Tone } from './types';
 
 export interface Work {
   /** Путь к картинке из public/, например '/images/works/1-klass/ivanova.jpg' */

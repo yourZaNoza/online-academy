@@ -1,4 +1,4 @@
-import { bootstrap } from '../../main';
+import { bootstrap } from '../../layout/bootstrap';
 import { $ } from '../../utils/dom';
 import { initReveal } from '../../utils/reveal';
 import { initConsultationForm } from './consultation-form';

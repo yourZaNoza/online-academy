@@ -1,4 +1,4 @@
-import { DEFAULT_CTA, NAV_ITEMS, PAGE_CTA, SITE_NAME, type PageId } from '../data/site';
+import { DEFAULT_CTA, NAV_ITEMS, PAGE_CTA, SITE_NAME, type PageId } from '../content/site';
 import { $, asset } from '../utils/dom';
 
 export function renderHeader(root: HTMLElement, activePage: PageId): void {

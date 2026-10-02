@@ -1,0 +1,90 @@
+/* Элементы интерфейса: кнопки и фильтры-«таблетки» */
+
+/* ---------- Кнопки ---------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 28px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--color-ink);
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background-color 0.2s,
+    transform 0.2s,
+    box-shadow 0.2s;
+}
+
+.btn:hover {
+  background: var(--color-ink-soft);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgb(46 26 71 / 0.2);
+}
+
+.btn--ghost {
+  background: transparent;
+  color: var(--color-ink);
+  box-shadow: inset 0 0 0 2px var(--color-ink);
+}
+
+.btn--ghost:hover {
+  background: var(--color-ink);
+  color: #fff;
+}
+
+.btn:focus-visible,
+.pill:focus-visible,
+.icon-btn:focus-visible {
+  outline: 3px solid var(--color-orange);
+  outline-offset: 3px;
+}
+
+/* ---------- Переключатели-«таблетки» (фильтры) ---------- */
+
+.pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 40px;
+}
+
+.pill {
+  padding: 12px 32px;
+  border: 2px solid var(--color-ink);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--color-ink);
+  font-family: inherit;
+  cursor: pointer;
+  transition:
+    background-color 0.2s,
+    border-color 0.2s,
+    color 0.2s;
+}
+
+/* Без transform: сдвиг внутри анимированного контейнера даёт артефакты отрисовки */
+.pill:hover {
+  background: var(--color-lavender);
+}
+
+.pill[aria-selected="true"]:hover {
+  border-color: #f0671c;
+  background: #f0671c;
+}
+
+.pill[aria-selected="true"] {
+  border-color: var(--color-orange);
+  background: var(--color-orange);
+  color: #fff;
+}
+
+@media (max-width: 640px) {
+  .pill {
+    padding: 10px 20px;
+  }
+}

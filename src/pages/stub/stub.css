@@ -1,0 +1,22 @@
+/* Стили страницы «в разработке». Общие элементы — в src/styles/ */
+
+.stub {
+  display: grid;
+  justify-items: start;
+  gap: 8px;
+  max-width: 720px;
+  min-height: 50vh;
+  align-content: center;
+}
+
+.stub__icon {
+  width: 96px;
+  margin-bottom: 16px;
+}
+
+.stub__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 24px;
+}

@@ -10,7 +10,7 @@ export interface NavItem {
 
 export const SITE_NAME = 'Кисловодская Онлайн-Академия искусств';
 
-// Каждой странице соответствует папка с index.html в корне проекта (courses/index.html → /courses/)
+// Каждой странице соответствует папка с index.html в pages/ (pages/courses/index.html → /courses/)
 export const NAV_ITEMS: NavItem[] = [
   { id: 'academy', label: 'Академия', href: '/' },
   { id: 'courses', label: 'Курсы', href: '/courses/' },

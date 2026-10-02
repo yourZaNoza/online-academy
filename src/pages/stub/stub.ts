@@ -1,9 +1,10 @@
 // Временная страница «в разработке» для разделов, у которых ещё нет макета.
 // Раздел берётся из <body data-page="...">.
 
-import { bootstrap } from '../../main';
-import { NAV_ITEMS, type PageId } from '../../data/site';
+import { bootstrap } from '../../layout/bootstrap';
+import { NAV_ITEMS, type PageId } from '../../content/site';
 import { $, asset } from '../../utils/dom';
+import './stub.css';
 
 const page = document.body.dataset.page as PageId;
 bootstrap(page);

@@ -1,4 +1,4 @@
-import { CONTACTS, SITE_NAME } from '../data/site';
+import { CONTACTS, SITE_NAME } from '../content/site';
 import { $, asset } from '../utils/dom';
 
 export function renderFooter(root: HTMLElement): void {

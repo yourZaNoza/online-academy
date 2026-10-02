@@ -1,5 +1,5 @@
 import { asset } from '../../utils/dom';
-import { DEFAULT_GRADE, GRADES, LICENSES, WORKS, type Grade, type Work } from './data';
+import { DEFAULT_GRADE, GRADES, LICENSES, WORKS, type Grade, type Work } from '../../content/academy';
 
 function workCard(work: Work, index: number): string {
   const content = work.image
