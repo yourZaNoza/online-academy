@@ -88,3 +88,123 @@
     padding: 10px 20px;
   }
 }
+
+/* ---------- Выпадающий список (src/components/dropdown.ts) ---------- */
+
+.dropdown {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+}
+
+.dropdown__toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  padding: 16px 4px;
+  border: 0;
+  outline: none;
+  background: transparent;
+  color: #8b7ba6;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.dropdown.has-value .dropdown__toggle {
+  color: var(--color-ink);
+}
+
+.dropdown__value {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dropdown__chevron {
+  flex-shrink: 0;
+  color: var(--color-ink);
+  transition: transform 0.25s;
+}
+
+.dropdown.is-open .dropdown__chevron {
+  transform: rotate(180deg);
+}
+
+.dropdown__list {
+  position: absolute;
+  z-index: 20;
+  top: calc(100% + 8px);
+  left: -34px;
+  right: 0;
+  display: grid;
+  gap: 4px;
+  margin: 0;
+  padding: 8px;
+  border: 1.5px solid var(--color-ink);
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 16px 36px rgb(46 26 71 / 0.14);
+  list-style: none;
+  outline: none;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px);
+  transition:
+    opacity 0.2s,
+    transform 0.2s,
+    visibility 0.2s;
+}
+
+.dropdown.is-open .dropdown__list {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
+
+.dropdown__list [role="option"] {
+  position: relative;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 40px 12px 14px;
+  border-radius: 12px;
+  color: var(--color-ink);
+  cursor: pointer;
+  transition: background-color 0.15s;
+}
+
+.dropdown__option-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+}
+
+.dropdown__option-note {
+  color: var(--color-ink-soft);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.dropdown__list .is-active {
+  background: var(--color-cream);
+}
+
+.dropdown__list [aria-selected="true"] {
+  background: var(--color-peach);
+}
+
+/* Галочка у выбранного пункта */
+.dropdown__list [aria-selected="true"]::after {
+  content: "";
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  width: 14px;
+  height: 14px;
+  translate: 0 -50%;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23ff7a30' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 8.5l3 3L13 4.5'/%3E%3C/svg%3E")
+    center / contain no-repeat;
+}

@@ -1,52 +1,68 @@
-// Раскрывающийся блок «Подробнее»: программа курса и краткая сводка.
-// Выдвигается под рядом с выбранной карточкой.
+// Раскрывающийся блок «Подробнее»: программа и краткая сводка.
+// Выдвигается под рядом с выбранной карточкой. Что показать — решает страница через getDetails.
 
-import { COURSES, type Course } from '../../content/courses';
-import { PROGRAMS } from '../../content/course-programs';
+import type { ProgramModule, Tone } from '../../content/types';
 import { $ } from '../../utils/dom';
-import { rub } from '../../utils/format';
+import './details.css';
 
-function detailsContent(course: Course): string {
-  const program = PROGRAMS[course.title];
-  if (!program) return '';
-  let lessonNo = 0;
-  const modules = program.modules
+export interface Details {
+  title: string;
+  tone: Tone;
+  /** Заголовок левой колонки: «Программа курса» */
+  label: string;
+  modules: ProgramModule[];
+  /** Слово перед номером пункта: «Урок» → «Урок 1: …» */
+  itemLabel: string;
+  /** Строки сводки справа: [«Стоимость», «4 900 ₽»] */
+  facts: [string, string][];
+  /** Подпись под кнопкой «Записаться» (необязательно) */
+  note?: string;
+}
+
+const CHEVRON = `<svg class="course__chevron" viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6l4 4 4-4"/></svg>`;
+
+/** Кнопка «Подробнее / Свернуть» для карточки каталога */
+export const moreButton = (): string => `
+  <button type="button" class="btn btn--sm course__more text-sm font-bold" aria-expanded="false">
+    <span class="course__more-label">Подробнее</span>${CHEVRON}
+  </button>`;
+
+function detailsContent(details: Details): string {
+  let itemNo = 0;
+  const modules = details.modules
     .map(
       (mod, i) => `
         <li class="program__module">
           <p class="program__title font-display font-bold text-lg m-0"><span class="program__num text-sm">${i + 1}</span>${mod.title}</p>
           <ul class="program__lessons text-sm">
-            ${mod.lessons.map((lesson) => `<li>Урок ${++lessonNo}: ${lesson}</li>`).join('')}
+            ${mod.lessons.map((lesson) => `<li>${details.itemLabel} ${++itemNo}: ${lesson}</li>`).join('')}
           </ul>
         </li>`,
     )
     .join('');
-  const rows: [string, string][] = [
-    ['Стоимость', rub(course.price)],
-    ['Длительность', program.duration],
-    ['Уроков', String(lessonNo)],
-    ['Формат', program.format],
-  ];
 
   return `
     <button type="button" class="course-details__close" aria-label="Свернуть">
       <svg viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 3l10 10M13 3L3 13"/></svg>
     </button>
     <div class="course-details__program">
-      <p class="course-details__label text-xs font-extrabold uppercase m-0">Программа курса</p>
+      <p class="course-details__label text-xs font-extrabold uppercase m-0">${details.label}</p>
       <ol class="program">${modules}</ol>
     </div>
-    <aside class="course-details__summary course__cover--${course.tone}">
-      <p class="font-display font-bold text-2xl leading-tight m-0">${course.title}</p>
+    <aside class="course-details__summary course__cover--${details.tone}">
+      <p class="font-display font-bold text-2xl leading-tight m-0">${details.title}</p>
       <dl class="course-details__facts text-sm">
-        ${rows.map(([k, v]) => `<div><dt>${k}</dt><dd class="font-extrabold">${v}</dd></div>`).join('')}
+        ${details.facts.map(([k, v]) => `<div><dt>${k}</dt><dd class="font-extrabold">${v}</dd></div>`).join('')}
       </dl>
-      <a href="/#consultation" class="btn course-details__cta font-bold">Записаться</a>
-      <p class="text-xs font-semibold text-ink-soft text-center m-0">Первый урок бесплатно</p>
+      <a href="/contacts/" class="btn course-details__cta font-bold">Записаться</a>
+      ${details.note ? `<p class="text-xs font-semibold text-ink-soft text-center m-0">${details.note}</p>` : ''}
     </aside>`;
 }
 
-export function initDetails(grid: HTMLElement): { close: () => void } {
+export function initDetails(
+  grid: HTMLElement,
+  getDetails: (title: string) => Details | null,
+): { close: () => void } {
   let panel: HTMLElement | null = null;
   let active: HTMLElement | null = null;
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -87,8 +103,8 @@ export function initDetails(grid: HTMLElement): { close: () => void } {
   };
 
   const open = (card: HTMLElement): void => {
-    const course = COURSES.find((c) => c.title === card.dataset.title);
-    if (!course) return;
+    const details = getDetails(card.dataset.title ?? '');
+    if (!details) return;
     const anchor = rowEnd(card);
     if (active) setExpanded(active, false);
 
@@ -101,11 +117,11 @@ export function initDetails(grid: HTMLElement): { close: () => void } {
     if (!panel) {
       panel = document.createElement('section');
       panel.className = 'course-details';
-      panel.setAttribute('aria-label', `Программа курса «${course.title}»`);
+      panel.setAttribute('aria-label', `${details.label} «${details.title}»`);
       panel.innerHTML = '<div class="course-details__clip"><div class="course-details__box"></div></div>';
       anchor.after(panel);
     }
-    $('.course-details__box', panel).innerHTML = detailsContent(course);
+    $('.course-details__box', panel).innerHTML = detailsContent(details);
     active = card;
     setExpanded(card, true);
     grid.classList.add('has-open');

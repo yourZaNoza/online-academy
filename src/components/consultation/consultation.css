@@ -1,0 +1,251 @@
+/* Блок «Получите консультацию»: страницы «Академия» и «Связь» */
+
+.consult {
+  padding-block: 60px;
+}
+
+.consult__grid {
+  display: grid;
+  grid-template-columns: 1fr 0.95fr;
+  gap: 56px;
+  align-items: stretch;
+}
+
+.form-card {
+  position: relative;
+  padding: 44px 44px 36px;
+  border: 1.5px solid #e2dbe8;
+  border-radius: 24px;
+  background: #fff;
+  box-shadow: 0 10px 40px rgb(46 26 71 / 0.05);
+}
+
+.form {
+  display: grid;
+  gap: 6px;
+  margin-top: 28px;
+}
+
+.field {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 1.5px solid var(--color-line);
+  transition: border-color 0.2s;
+}
+
+.field:focus-within {
+  border-color: var(--color-orange);
+}
+
+.field input {
+  flex: 1;
+  min-width: 0;
+  padding: 16px 4px;
+  border: 0;
+  outline: none;
+  background: transparent;
+  color: var(--color-ink);
+  font: inherit;
+}
+
+.field input::placeholder,
+.field textarea::placeholder {
+  color: #8b7ba6;
+}
+
+/* Иконка слева в поле (часы у «Удобного времени звонка») */
+.field__icon {
+  flex-shrink: 0;
+  margin-left: 2px;
+  color: #8b7ba6;
+  transition: color 0.2s;
+}
+
+.field--select:focus-within .field__icon,
+.field--select:has(.has-value) .field__icon {
+  color: var(--color-orange);
+}
+
+/* Многострочное поле «Ваше обращение» со счётчиком символов */
+.field--textarea {
+  align-items: stretch;
+}
+
+.field textarea {
+  flex: 1;
+  min-width: 0;
+  min-height: 92px;
+  max-height: 260px;
+  padding: 16px 4px 26px;
+  border: 0;
+  outline: none;
+  background: transparent;
+  color: var(--color-ink);
+  font: inherit;
+  line-height: 1.45;
+  /* Без маркера растягивания — высота подстраивается под текст (consultation-form.ts) */
+  resize: none;
+}
+
+.field__counter {
+  position: absolute;
+  right: 4px;
+  bottom: 6px;
+  color: #a59dac;
+  pointer-events: none;
+  transition: color 0.2s;
+}
+
+.field__counter.is-near-limit {
+  color: var(--color-orange);
+}
+
+.field__flag {
+  flex-shrink: 0;
+  width: 22px;
+  height: 15px;
+  border-radius: 2px;
+  background: linear-gradient(#fff 0 33%, #1c57d6 33% 66%, #e4252d 66%);
+  box-shadow: 0 0 0 1px #e4e4e4;
+}
+
+.field__error {
+  position: absolute;
+  right: 0;
+  bottom: -18px;
+  color: #d93025;
+}
+
+.field.is-invalid {
+  border-color: #d93025;
+}
+
+.consent {
+  position: relative;
+  display: flex;
+  gap: 10px;
+  margin: 18px 0 20px;
+  cursor: pointer;
+}
+
+.consent input {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  margin: 2px 0 0;
+  accent-color: var(--color-orange);
+}
+
+.consent.is-invalid input {
+  outline: 2px solid #d93025;
+}
+
+.consent .field__error {
+  bottom: -20px;
+  left: 26px;
+  right: auto;
+}
+
+.form .btn {
+  width: 100%;
+}
+
+.form-error {
+  margin: 0 0 16px;
+  padding: 12px 16px;
+  border-radius: 12px;
+  background: #fdecea;
+  color: #b3261e;
+}
+
+.form-error[hidden] {
+  display: none;
+}
+
+.form-trap {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.form .btn:disabled {
+  opacity: 0.7;
+  cursor: wait;
+}
+
+.form-success {
+  display: grid;
+  gap: 12px;
+  padding-block: 40px;
+}
+
+.consult__aside {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.consult__aside p {
+  margin: 0;
+}
+
+.consult__aside a {
+  text-decoration: none;
+}
+
+/* Работа ученика «висит» на кремовом фоне: белое паспарту, мягкая тень, лёгкий наклон */
+.artwork {
+  position: relative;
+  flex: 1;
+  min-height: 280px;
+  margin: 8px 0 0;
+  border: 1.5px solid #eadcb8;
+  border-radius: 24px;
+  background: var(--color-cream);
+}
+
+.artwork__img {
+  position: absolute;
+  inset: 28px 36px;
+  width: calc(100% - 72px);
+  height: calc(100% - 56px);
+  object-fit: cover;
+  border: 8px solid #fff;
+  border-radius: 6px;
+  box-shadow:
+    0 2px 4px rgb(46 26 71 / 0.08),
+    0 14px 28px rgb(46 26 71 / 0.14);
+  transform: rotate(-1.5deg);
+  transition: transform 0.4s ease;
+}
+
+.artwork:hover .artwork__img {
+  transform: rotate(0deg) scale(1.02);
+}
+
+.deco--star-violet {
+  top: -119px;
+  right: -99px;
+  width: 228px;
+}
+
+@media (max-width: 900px) {
+  .consult {
+    padding-block: 64px;
+  }
+
+  .consult__grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+}
+
+@media (max-width: 640px) {
+  .form-card {
+    padding: 28px 20px;
+  }
+}

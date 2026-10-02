@@ -20,37 +20,30 @@
   margin: 20px 0 16px;
 }
 
-.map-stub {
+.map {
   position: relative;
-  display: grid;
-  place-items: center;
+  z-index: 1;
   height: 232px;
   overflow: hidden;
   border: 1.5px solid var(--color-ink);
   border-radius: 22px;
-  background:
-    linear-gradient(115deg, transparent 46%, #d9e8c7 46% 58%, transparent 58%),
-    linear-gradient(90deg, transparent 49%, #fff 49% 51%, transparent 51%) 0 0 / 80px 80px,
-    linear-gradient(0deg, transparent 49%, #fff 49% 51%, transparent 51%) 0 0 / 80px 80px,
-    #eceae6;
+  background: #eceae6;
 }
 
-.map-stub__center {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  padding: 16px 24px;
-  border-radius: 16px;
-  background: rgb(255 255 255 / 0.85);
+.map__widget {
+  width: 100%;
+  height: 100%;
 }
 
-.map-stub__label {
-  position: absolute;
-  left: 24px;
-  bottom: 0;
-  padding: 12px 20px;
-  border-radius: 12px 12px 0 0;
+/* Плашка «прилипает» к нижнему краю карты: верх заходит под карту,
+   чтобы у скруглённого угла не просвечивал фон */
+.map__label {
+  position: relative;
+  width: fit-content;
+  max-width: calc(100% - 32px);
+  margin: -24px 0 0 16px;
+  padding: 36px 20px 12px;
+  border-radius: 0 0 12px 12px;
   background: var(--color-ink);
   color: #fff;
 }

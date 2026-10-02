@@ -1,31 +1,11 @@
 // Каталог курсов. Чтобы добавить курс или поменять цену — допишите объект в массив.
 // Программа курса (модули и уроки) — в course-programs.ts.
+// Обложка: положите картинку в public/images/ и впишите путь в image, например '/images/art1.png'.
+// Пока image пустой — на обложке иконка icon.
 
-import type { Tone } from './types';
+import type { CatalogItem } from './types';
 
-export type Audience = 'kids' | 'adults' | 'applicants' | 'beginners' | 'masters';
-
-export const AUDIENCES: Record<Audience, string> = {
-  kids: 'Для детей',
-  adults: 'Для взрослых',
-  applicants: 'Для поступающих',
-  beginners: 'Для начинающих',
-  masters: 'Для мастеров',
-};
-
-export interface Course {
-  title: string;
-  description: string;
-  age: number;
-  audience: Audience[];
-  price: number;
-  /** Подпись под ценой: «за курс», «за месяц», «длительность - 1 месяц» */
-  priceNote: string;
-  tone: Tone;
-  /** Иконка-заглушка на обложке, пока нет картинки */
-  icon: string;
-  /** Картинка обложки из public/ (необязательно) */
-  image?: string;
+export interface Course extends CatalogItem {
   /** Ссылка на страницу курса */
   href: string;
 }
@@ -41,6 +21,7 @@ export const COURSES: Course[] = [
     priceNote: 'за курс',
     tone: 'peach',
     icon: '/icons/brush.svg',
+    image: '/images/art1.png',
     href: '#',
   },
   {
@@ -52,6 +33,7 @@ export const COURSES: Course[] = [
     priceNote: 'за курс',
     tone: 'cream',
     icon: '/icons/point.svg',
+    image: '',
     href: '#',
   },
   {
@@ -64,6 +46,7 @@ export const COURSES: Course[] = [
     priceNote: 'длительность - 3 месяца',
     tone: 'lavender',
     icon: '/icons/picture.svg',
+    image: '',
     href: '#',
   },
   {
@@ -75,6 +58,7 @@ export const COURSES: Course[] = [
     priceNote: 'длительность - 1 месяц',
     tone: 'cream',
     icon: '/icons/gallery.svg',
+    image: '',
     href: '#',
   },
   {
@@ -86,6 +70,7 @@ export const COURSES: Course[] = [
     priceNote: 'за месяц',
     tone: 'lavender',
     icon: '/icons/message.svg',
+    image: '',
     href: '#',
   },
   {
@@ -98,6 +83,7 @@ export const COURSES: Course[] = [
     priceNote: 'за курс',
     tone: 'peach',
     icon: '/icons/nav.svg',
+    image: '',
     href: '#',
   },
   {
@@ -110,6 +96,7 @@ export const COURSES: Course[] = [
     priceNote: 'за месяц',
     tone: 'lavender',
     icon: '/icons/brush.svg',
+    image: '',
     href: '#',
   },
   {
@@ -121,6 +108,7 @@ export const COURSES: Course[] = [
     priceNote: 'за месяц',
     tone: 'peach',
     icon: '/icons/point.svg',
+    image: '',
     href: '#',
   },
   {
@@ -133,6 +121,7 @@ export const COURSES: Course[] = [
     priceNote: 'за месяц',
     tone: 'cream',
     icon: '/icons/picture.svg',
+    image: '',
     href: '#',
   },
   {
@@ -145,6 +134,7 @@ export const COURSES: Course[] = [
     priceNote: 'за месяц',
     tone: 'lavender',
     icon: '/icons/brush.svg',
+    image: '',
     href: '#',
   },
   {
@@ -156,6 +146,7 @@ export const COURSES: Course[] = [
     priceNote: 'за месяц',
     tone: 'peach',
     icon: '/icons/point.svg',
+    image: '',
     href: '#',
   },
   {
@@ -167,6 +158,7 @@ export const COURSES: Course[] = [
     priceNote: 'за месяц',
     tone: 'cream',
     icon: '/icons/picture.svg',
+    image: '',
     href: '#',
   },
   {
@@ -178,6 +170,7 @@ export const COURSES: Course[] = [
     priceNote: 'за месяц',
     tone: 'lavender',
     icon: '/icons/brush.svg',
+    image: '',
     href: '#',
   },
 ];

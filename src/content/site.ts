@@ -25,27 +25,35 @@ export interface HeaderCta {
 }
 
 /** Кнопка справа в шапке. Для отдельных страниц можно задать свою. */
-export const DEFAULT_CTA: HeaderCta = { label: 'Записаться на консультацию', href: '/#consultation' };
+export const DEFAULT_CTA: HeaderCta = { label: 'Записаться на консультацию', href: '/contacts/' };
 
 export const PAGE_CTA: Partial<Record<PageId, HeaderCta>> = {
   courses: { label: 'Записаться на пробный урок', href: '/#consultation' },
 };
 
+// &nbsp; — неразрывный пробел: слова по обе стороны не разъедутся на разные строки
 export const CONTACTS = {
   fullName:
-    'Автономная некоммерческая организация профессионального обучения и дополнительного профессионального образования «Кисловодская Академия искусств»',
-  shortName: 'АНО ПО и ДПО «Кисловодская Академия искусств»',
-  phone: '+7 928 346-48-27',
-  hotline: '8 (800) 555-35-35',
-  schedule: 'пн–сб 9:00–19:00 (Мск)',
-  email: 'kis1academyofarts@gmail.com',
-  address: '357700, Ставропольский край, г. Кисловодск, пр. Победы, 37А',
+    'Автономная некоммерческая организация профессионального обучения и дополнительного профессионального образования «Кисловодская Академия&nbsp;искусств»',
+  shortName: 'АНО ПО и ДПО «Кисловодская Академия&nbsp;искусств»',
+  phone: '8 800 555 35 35',
+  schedule: [
+    { label: 'Режим работы ОНЛАЙН', value: 'пн–пт, 9:00–18:00 (Мск)' },
+    { label: 'Режим работы оффлайн', value: 'пн–сб, 9:00–19:00 (Мск)' },
+  ],
+  email: 'kis-online-akademia@yandex.ru',
+  /** Телефон из сообщения об ошибке отправки формы */
+  hotline: '8 800 555 35 35',
+  address: '357700, Ставропольский край, г. Кисловодск, пр.&nbsp;Победы,&nbsp;37А',
   rating: '5,0',
   links: {
-    orgInfo: '#',
-    govSite: '#',
+    orgInfo: 'https://kislovodskacademyofart-school.profiedu.ru/sveden/common',
+    govSite: 'https://kislovodskacademyofart-school.profiedu.ru/',
     privacy: '#',
     vk: '#',
     telegram: '#',
   },
+  /** Карта из конструктора Яндекс.Карт: id карты — параметр um. height должна совпадать с высотой .map в styles/footer.css */
+  mapWidget:
+    'https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A0273ffdf6a900bd4a8d90f2c9d6c8fd9cb03c47ccdc388835294b30d88c1e68f&width=100%25&height=232&lang=ru_RU&scroll=true',
 };

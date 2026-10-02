@@ -17,19 +17,14 @@ export function renderFooter(root: HTMLElement): void {
             </span>
           </a>
           <div class="site-footer__links text-sm font-bold">
-            <a href="${links.orgInfo}" class="underline underline-offset-2">Сведения об образовательной организации</a>
-            <a href="${links.govSite}" class="underline underline-offset-2">Государственный сайт академии</a>
+            <a href="${links.orgInfo}" class="underline underline-offset-2" target="_blank" rel="noopener">Сведения об образовательной организации</a>
+            <a href="${links.govSite}" class="underline underline-offset-2" target="_blank" rel="noopener">Государственный сайт академии</a>
           </div>
 
-          <!-- Заглушка: сюда встанет виджет карты (Яндекс.Карты и т.п.) -->
-          <div class="map-stub" id="map">
-            <div class="map-stub__center">
-              <img src="${asset('/icons/point.svg')}" alt="" width="40" height="40" />
-              <span class="text-sm font-bold">Здесь будет карта</span>
-              <span class="text-xs">${CONTACTS.address}</span>
-            </div>
-            <span class="map-stub__label font-display text-sm font-semibold">Хотите записаться офлайн? Мы на карте!</span>
+          <div class="map">
+            <div class="map__widget" id="map" aria-label="Карта: ${CONTACTS.address}"></div>
           </div>
+          <p class="map__label font-display text-sm font-semibold">Хотите записаться офлайн? Мы на карте!</p>
 
           <div class="rating">
             <span class="font-display font-bold">${CONTACTS.rating}</span>
@@ -44,7 +39,7 @@ export function renderFooter(root: HTMLElement): void {
             <p>${CONTACTS.fullName}</p>
             <p><b>Сокращенное наименование образовательной организации:</b> ${CONTACTS.shortName}</p>
             <p><b>Телефон:</b> <a href="tel:${phoneHref}" class="no-underline">${CONTACTS.phone}</a></p>
-            <p><b>Режим работы:</b> ${CONTACTS.schedule}</p>
+            ${CONTACTS.schedule.map((s) => `<p><b>${s.label}:</b> ${s.value}</p>`).join('')}
             <p><b>Email:</b> <a href="mailto:${CONTACTS.email}" class="underline underline-offset-2">${CONTACTS.email}</a></p>
             <p><b>Адрес:</b> ${CONTACTS.address}</p>
           </div>
@@ -67,4 +62,28 @@ export function renderFooter(root: HTMLElement): void {
     </div>`;
 
   $('.to-top', root).addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  loadMap($('#map', root));
+}
+
+/** Подключает карту Яндекса, когда подвал подходит к экрану, — чтобы не тормозить загрузку страницы. */
+function loadMap(container: HTMLElement): void {
+  const load = (): void => {
+    const script = document.createElement('script');
+    script.src = CONTACTS.mapWidget;
+    script.async = true;
+    script.charset = 'utf-8';
+    // Конструктор рисует карту на месте своего <script>
+    container.append(script);
+  };
+
+  if (!('IntersectionObserver' in window)) return load();
+  const observer = new IntersectionObserver(
+    (entries) => {
+      if (!entries.some((e) => e.isIntersecting)) return;
+      observer.disconnect();
+      load();
+    },
+    { rootMargin: '400px' },
+  );
+  observer.observe(container);
 }

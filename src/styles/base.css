@@ -31,6 +31,13 @@ a {
 
 /* ---------- Секции и декоративные пятна ---------- */
 
+/* Декоративная иконка поверх блока (звёзды, кисть и т.п.) */
+.deco {
+  position: absolute;
+  pointer-events: none;
+  user-select: none;
+}
+
 .section {
   position: relative;
   overflow: hidden;

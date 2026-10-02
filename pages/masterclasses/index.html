@@ -6,7 +6,7 @@
     <title>Мастер-классы — Кисловодская Онлайн-Академия искусств</title>
     <meta
       name="description"
-      content="Мастер-классы от ведущих художников России."
+      content="Короткие видео-материалы по созданию картины за один раз: от первого мазка до оформления в рамку."
     />
     <link rel="icon" type="image/svg+xml" href="/icons/icon%20light.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -15,17 +15,31 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&family=Open+Sans:wght@600;700;800&display=swap"
     />
-    <script type="module" src="/src/pages/stub/stub.ts"></script>
+    <script type="module" src="/src/pages/masterclasses/masterclasses.ts"></script>
   </head>
-  <body class="font-body" data-page="masterclasses">
+  <body class="font-body">
     <header id="site-header" class="site-header"></header>
 
     <main>
-      <!-- Страница в разработке: замените секцию на контент по макету -->
-      <section class="section section--paper">
-        <span class="blob blob--yellow" style="width: 320px; height: 320px; top: -80px; right: -60px"></span>
-        <span class="blob blob--lavender" style="width: 260px; height: 260px; bottom: -100px; left: 30%"></span>
-        <div class="container" id="stub"></div>
+      <!-- ===== Мастер-классы ===== -->
+      <section class="section section--paper page-intro">
+        <span class="blob blob--yellow" style="width: 260px; height: 260px; top: -140px; right: 6%"></span>
+
+        <div class="container page-lead">
+          <h1 class="font-display font-extrabold text-4xl sm:text-5xl leading-tight m-0 animate-fade-up">Мастер-классы</h1>
+          <p class="text-lg mt-4 animate-fade-up [animation-delay:120ms]">
+            Короткие видео-материалы по созданию картины за один раз. От первого мазка до оформления в рамку.
+          </p>
+          <p class="counter text-sm font-bold text-ink-soft animate-fade-up [animation-delay:200ms]" id="masterclass-count" aria-live="polite"></p>
+        </div>
+      </section>
+
+      <!-- ===== Каталог ===== -->
+      <section class="section section--paper courses-section">
+        <div class="container">
+          <div class="pills animate-fade-up [animation-delay:260ms]" id="masterclass-filters" role="tablist" aria-label="Для кого мастер-класс"></div>
+          <div class="courses-grid" id="masterclass-grid"></div>
+        </div>
       </section>
     </main>
 

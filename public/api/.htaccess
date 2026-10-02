@@ -1,0 +1,4 @@
+# Файл с паролем нельзя открыть из браузера
+<Files "config.php">
+  Require all denied
+</Files>

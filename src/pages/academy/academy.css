@@ -7,8 +7,7 @@
 }
 
 .hero__grid,
-.edu__grid,
-.consult__grid {
+.edu__grid {
   display: grid;
   grid-template-columns: 1fr 1.12fr;
   gap: 56px;
@@ -257,158 +256,6 @@
   display: block;
 }
 
-/* ---------- Консультация ---------- */
-
-.consult {
-  padding-block: 60px;
-}
-
-.consult__grid {
-  grid-template-columns: 1fr 0.95fr;
-}
-
-.form-card {
-  padding: 44px 44px 36px;
-  border: 1.5px solid #e2dbe8;
-  border-radius: 24px;
-  background: #fff;
-  box-shadow: 0 10px 40px rgb(46 26 71 / 0.05);
-}
-
-.form {
-  display: grid;
-  gap: 6px;
-  margin-top: 28px;
-}
-
-.field {
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  border-bottom: 1.5px solid var(--color-line);
-  transition: border-color 0.2s;
-}
-
-.field:focus-within {
-  border-color: var(--color-orange);
-}
-
-.field input {
-  flex: 1;
-  min-width: 0;
-  padding: 16px 4px;
-  border: 0;
-  outline: none;
-  background: transparent;
-  color: var(--color-ink);
-  font: inherit;
-}
-
-.field input::placeholder {
-  color: #8b7ba6;
-}
-
-.field__flag {
-  flex-shrink: 0;
-  width: 22px;
-  height: 15px;
-  border-radius: 2px;
-  background: linear-gradient(#fff 0 33%, #1c57d6 33% 66%, #e4252d 66%);
-  box-shadow: 0 0 0 1px #e4e4e4;
-}
-
-.field__error {
-  position: absolute;
-  right: 0;
-  bottom: -18px;
-  color: #d93025;
-}
-
-.field.is-invalid {
-  border-color: #d93025;
-}
-
-.consent {
-  position: relative;
-  display: flex;
-  gap: 10px;
-  margin: 18px 0 20px;
-  cursor: pointer;
-}
-
-.consent input {
-  flex-shrink: 0;
-  width: 16px;
-  height: 16px;
-  margin: 2px 0 0;
-  accent-color: var(--color-orange);
-}
-
-.consent.is-invalid input {
-  outline: 2px solid #d93025;
-}
-
-.consent .field__error {
-  bottom: -20px;
-  left: 26px;
-  right: auto;
-}
-
-.form .btn {
-  width: 100%;
-}
-
-.form-success {
-  display: grid;
-  gap: 12px;
-  padding-block: 40px;
-}
-
-.consult__aside {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.consult__aside p {
-  margin: 0;
-}
-
-.consult__aside a {
-  text-decoration: none;
-}
-
-/* Работа ученика «висит» на кремовом фоне: белое паспарту, мягкая тень, лёгкий наклон */
-.artwork {
-  position: relative;
-  flex: 1;
-  min-height: 280px;
-  margin: 8px 0 0;
-  border: 1.5px solid #eadcb8;
-  border-radius: 24px;
-  background: var(--color-cream);
-}
-
-.artwork__img {
-  position: absolute;
-  inset: 28px 36px;
-  width: calc(100% - 72px);
-  height: calc(100% - 56px);
-  object-fit: cover;
-  border: 8px solid #fff;
-  border-radius: 6px;
-  box-shadow:
-    0 2px 4px rgb(46 26 71 / 0.08),
-    0 14px 28px rgb(46 26 71 / 0.14);
-  transform: rotate(-1.5deg);
-  transition: transform 0.4s ease;
-}
-
-.artwork:hover .artwork__img {
-  transform: rotate(0deg) scale(1.02);
-}
-
 /* ---------- Примеры работ ---------- */
 
 .tiles {
@@ -642,8 +489,7 @@
   }
 
   .hero__grid,
-  .edu__grid,
-  .consult__grid {
+  .edu__grid {
     grid-template-columns: 1fr;
     gap: 32px;
   }
@@ -670,10 +516,6 @@
 
   .hero__media {
     padding: 20px;
-  }
-
-  .form-card {
-    padding: 28px 20px;
   }
 
   .card--rings {
@@ -706,12 +548,7 @@
 }
 
 /* ---------- Декоративные иконки (кисть, звёзды, птицы, динозавр) ---------- */
-
-.deco {
-  position: absolute;
-  pointer-events: none;
-  user-select: none;
-}
+/* Базовый класс .deco — в src/styles/base.css */
 
 /* Кисть лежит горизонтально справа от заголовка, конец растворяется */
 .deco--pen {
@@ -752,15 +589,6 @@
   transform: translateY(-50%);
 }
 
-.form-card {
-  position: relative;
-}
-
-.deco--star-violet {
-  top: -119px;
-  right: -99px;
-  width: 228px;
-}
 
 /* Примеры работ: птицы слева, заголовок и фильтры справа */
 .works__head {
