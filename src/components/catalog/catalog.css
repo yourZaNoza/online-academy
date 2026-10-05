@@ -55,9 +55,11 @@
   flex-direction: column;
   gap: 10px;
   padding: 50px 18px 20px;
-  border: 1.5px solid var(--color-ink);
+  border: 1.5px solid rgb(46 26 71 / 0.2);
   border-radius: 24px;
   background: #fff;
+  /* от ширины карточки зависит размер меток — см. .course__tag */
+  container-type: inline-size;
   transition:
     transform 0.25s,
     box-shadow 0.25s,
@@ -81,6 +83,7 @@
 }
 
 .course__cover {
+  position: relative;
   display: grid;
   place-items: center;
   height: 148px;
@@ -106,23 +109,32 @@
   height: 48px;
 }
 
+/* Картинка заполняет обложку целиком и обрезается по краям от центра */
 .course__image {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
 }
 
 .course__tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px 20px;
+  gap: 6px;
   margin: 0;
   padding: 0 4px;
   list-style: none;
 }
 
+/* Две метки («Для поступающих» + «Продвинутый уровень») должны влезать в одну строку:
+   шрифт уменьшается вместе с карточкой, но не меньше 9px */
 .course__tag {
-  padding: 4px 12px;
+  padding: 0.35em 0.8em;
+  font-size: clamp(9px, calc((100cqi - 52px) / 25), 12px);
+  letter-spacing: 0.01em;
+  white-space: nowrap;
   border-radius: 999px;
   background: #ffe8d6;
   color: #f0671c;

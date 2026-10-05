@@ -2,7 +2,7 @@
 
 import { COURSES } from '../../content/courses';
 import { PROGRAMS } from '../../content/course-programs';
-import { AUDIENCES, type Audience } from '../../content/types';
+import { AUDIENCES, TEACHER_PLACEHOLDER, type Audience } from '../../content/types';
 import { initCatalog as initCatalogGrid } from '../../components/catalog/catalog';
 import { initDetails, moreButton, type Details } from '../../components/catalog/details';
 import { $ } from '../../utils/dom';
@@ -12,7 +12,6 @@ function courseDetails(title: string): Details | null {
   const course = COURSES.find((c) => c.title === title);
   const program = PROGRAMS[title];
   if (!course || !program) return null;
-  const lessons = program.modules.reduce((sum, mod) => sum + mod.lessons.length, 0);
   return {
     title,
     tone: course.tone,
@@ -21,15 +20,21 @@ function courseDetails(title: string): Details | null {
     itemLabel: 'Урок',
     facts: [
       ['Стоимость', rub(course.price)],
-      ['Длительность', program.duration],
-      ['Уроков', String(lessons)],
+      ['Преподаватель', course.teacher ?? TEACHER_PLACEHOLDER],
       ['Формат', program.format],
+      ['Длительность', program.duration],
     ],
-    note: 'Первый урок бесплатно',
+    link: { href: '#formats', label: 'Оформить индивидуальную программу' },
   };
 }
 
 export function initCatalog(): void {
+  // Программа ищется по точному названию курса: после переименования курса поправьте ключ в course-programs.ts
+  if (import.meta.env.DEV) {
+    const missing = COURSES.filter((c) => !PROGRAMS[c.title]).map((c) => c.title);
+    if (missing.length) console.warn('Нет программы в course-programs.ts для курсов:', missing);
+  }
+
   const grid = $('#course-grid');
   const details = initDetails(grid, courseDetails);
 

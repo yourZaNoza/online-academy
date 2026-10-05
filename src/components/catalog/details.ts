@@ -15,8 +15,8 @@ export interface Details {
   itemLabel: string;
   /** Строки сводки справа: [«Стоимость», «4 900 ₽»] */
   facts: [string, string][];
-  /** Подпись под кнопкой «Записаться» (необязательно) */
-  note?: string;
+  /** Ссылка под кнопкой «Записаться» (необязательно) */
+  link?: { href: string; label: string };
 }
 
 const CHEVRON = `<svg class="course__chevron" viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6l4 4 4-4"/></svg>`;
@@ -55,7 +55,7 @@ function detailsContent(details: Details): string {
         ${details.facts.map(([k, v]) => `<div><dt>${k}</dt><dd class="font-extrabold">${v}</dd></div>`).join('')}
       </dl>
       <a href="/contacts/" class="btn course-details__cta font-bold">Записаться</a>
-      ${details.note ? `<p class="text-xs font-semibold text-ink-soft text-center m-0">${details.note}</p>` : ''}
+      ${details.link ? `<a href="${details.link.href}" class="text-xs font-semibold text-ink-soft text-center underline underline-offset-2">${details.link.label}</a>` : ''}
     </aside>`;
 }
 

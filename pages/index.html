@@ -57,7 +57,7 @@
               <!-- Фото как снимок в альбоме: подложка-листок, белая рамка и два кусочка скотча -->
               <figure class="snapshot">
                 <span class="snapshot__sheet" aria-hidden="true"></span>
-                <img src="/images/image%201.png" alt="Картина маслом на мольберте в цветущем поле" class="snapshot__photo" />
+                <img src="/images/site1.png" alt="Картина маслом на мольберте в цветущем поле" class="snapshot__photo" />
                 <span class="snapshot__tape snapshot__tape--left" aria-hidden="true"></span>
                 <span class="snapshot__tape snapshot__tape--right" aria-hidden="true"></span>
               </figure>
@@ -77,15 +77,15 @@
           <h2 class="tag-title font-display font-extrabold text-3xl sm:text-4xl leading-tight" data-reveal>
             <span class="tag tag--orange">Образование,</span>
             <span class="tag tag--yellow">а не просто грамоты</span>
-            <img src="/icons/Star%204.svg" alt="" class="deco deco--star-teal animate-spin-b [animation-delay:-11s]" aria-hidden="true" />
+            <img src="/icons/Star%204.svg" alt="" class="deco deco--star-teal animate-spin-a [animation-delay:-11s]" aria-hidden="true" />
           </h2>
 
           <div class="edu__grid">
             <div class="card card--lavender edu__media" data-reveal>
               <!-- Два фото по диагонали; при наведении (или фокусе с клавиатуры) меняются местами -->
               <div class="duo" tabindex="0" aria-label="Фотографии с занятий академии">
-                <img src="/images/image%202.png" alt="Дети рисуют маркерами на занятии" class="duo__img duo__img--first" loading="lazy" />
-                <img src="/images/image13.jpg" alt="Рисунок мелом на асфальте: радуга, солнце и надпись «Миру мир!»" class="duo__img duo__img--second" loading="lazy" />
+                <img src="/images/site2.png" alt="Дети рисуют маркерами на занятии" class="duo__img duo__img--first" loading="lazy" />
+                <img src="/images/site3.jpg" alt="Рисунок мелом на асфальте: радуга, солнце и надпись «Миру мир!»" class="duo__img duo__img--second" loading="lazy" />
               </div>
               <!-- Две «фигурки» из колец: голова + туловище. Тёмная уходит влево, оранжевая вправо -->
               <span class="ring ring--1 animate-apart-left"></span>
@@ -126,38 +126,31 @@
       <!-- ===== Получите консультацию (src/components/consultation) ===== -->
       <section class="section section--paper consult" id="consultation"></section>
 
-      <!-- ===== Примеры работ наших учеников ===== -->
-      <section class="section section--white">
-        <div class="container">
-          <div class="works__head">
-            <div class="works__birds" data-reveal aria-hidden="true">
-              <img src="/icons/bird%201.svg" alt="" class="bird bird--yellow animate-hop" />
-              <img src="/icons/bird%202.svg" alt="" class="bird bird--orange animate-hop [animation-delay:1.2s]" />
-            </div>
-            <div class="works__controls">
-              <h2 class="tag-title font-display font-extrabold text-3xl sm:text-4xl leading-tight" data-reveal>
-                <span class="tag tag--orange">Примеры работ</span>
-                <span class="tag tag--yellow">наших учеников</span>
-              </h2>
-              <div class="pills" id="works-filters" role="tablist" aria-label="Выбор класса" data-reveal></div>
-            </div>
-          </div>
-          <ul class="tiles" id="works-grid" aria-live="polite"></ul>
-        </div>
-      </section>
+      <!-- ===== Примеры работ наших учеников (src/components/works) ===== -->
+      <section class="section section--white" id="works"></section>
 
       <!-- ===== Лицензии и грамоты ===== -->
-      <section class="section section--white">
+      <section class="section section--white" id="licenses">
         <div class="container">
           <div class="licenses__head">
-            <img src="/icons/Star%201.svg" alt="" class="deco deco--star-green animate-spin-d [animation-delay:-7s]" aria-hidden="true" />
+            <img src="/icons/Star%201.svg" alt="" class="deco deco--star-green animate-spin-a [animation-delay:-7s]" aria-hidden="true" />
             <h2 class="tag-title font-display font-extrabold text-3xl sm:text-4xl leading-tight" data-reveal>
               <span class="tag tag--orange">Лицензии</span>
               <span class="tag tag--yellow">и грамоты</span>
             </h2>
-            <img src="/icons/Star%206.svg" alt="" class="deco deco--star-red animate-spin-f [animation-delay:-16s]" aria-hidden="true" />
+            <img src="/icons/Star%206.svg" alt="" class="deco deco--star-red animate-spin-a [animation-delay:-16s]" aria-hidden="true" />
           </div>
-          <ul class="licenses" id="licenses-grid"></ul>
+          <div class="licenses__viewport" data-reveal>
+            <ul class="licenses__track"></ul>
+          </div>
+          <div class="slider-controls licenses__controls" data-reveal data-reveal-delay="100">
+            <button type="button" class="icon-btn" data-prev aria-label="Предыдущий документ">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M10 3 5 8l5 5" /></svg>
+            </button>
+            <button type="button" class="icon-btn icon-btn--accent" data-next aria-label="Следующий документ">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="m6 3 5 5-5 5" /></svg>
+            </button>
+          </div>
         </div>
       </section>
 
@@ -166,7 +159,7 @@
         <span class="blob blob--yellow" style="width: 200px; height: 200px; top: -40px; right: -60px"></span>
 
         <div class="container">
-          <img src="/icons/review%201.svg" alt="" class="deco deco--review" aria-hidden="true" />
+          <img src="/icons/review%201.svg" alt="" class="deco deco--review animate-square" aria-hidden="true" />
           <div class="reviews__head" data-reveal>
             <div>
               <h2 class="tag-title font-display font-extrabold text-3xl sm:text-4xl leading-tight">

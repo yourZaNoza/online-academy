@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Галерея — Кисловодская Онлайн-Академия искусств</title>
+    <meta name="description" content="Работы учеников Кисловодской Онлайн-Академии искусств с 1 по 5 класс." />
+    <link rel="icon" type="image/svg+xml" href="/icons/icon%20light.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&family=Open+Sans:wght@600;700;800&display=swap"
+    />
+    <script type="module" src="/src/pages/gallery/gallery.ts"></script>
+  </head>
+  <body class="font-body" data-page="gallery">
+    <header id="site-header" class="site-header"></header>
+
+    <main>
+      <!-- ===== Галерея ===== -->
+      <section class="section section--paper page-intro">
+        <span class="blob blob--yellow" style="width: 260px; height: 260px; top: -140px; right: 6%"></span>
+
+        <div class="container page-lead">
+          <h1 class="font-display font-extrabold text-4xl sm:text-5xl leading-tight m-0 animate-fade-up">Галерея</h1>
+          <p class="text-lg mt-4 animate-fade-up [animation-delay:120ms]">Примеры работ наших учеников.</p>
+          <p class="counter text-sm font-bold text-ink-soft animate-fade-up [animation-delay:200ms]" id="gallery-count" aria-live="polite"></p>
+        </div>
+      </section>
+
+      <!-- ===== Работы (src/pages/gallery/gallery.ts) ===== -->
+      <section class="section section--paper courses-section">
+        <div class="container">
+          <div class="pills animate-fade-up [animation-delay:260ms]" id="gallery-filters" role="tablist" aria-label="Выбор класса"></div>
+          <ul class="gallery-grid" id="gallery-grid"></ul>
+        </div>
+      </section>
+    </main>
+
+    <footer id="site-footer" class="site-footer"></footer>
+  </body>
+</html>

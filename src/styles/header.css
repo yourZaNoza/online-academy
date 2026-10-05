@@ -184,3 +184,10 @@
     white-space: nowrap;
   }
 }
+
+/* Иконка телефона в кнопке «Консультация»: исходник чёрный, на тёмной кнопке делаем белым */
+.site-header__cta-icon {
+  width: 18px;
+  height: 18px;
+  filter: invert(1);
+}

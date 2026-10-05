@@ -23,21 +23,29 @@ export interface CatalogOptions<T extends CatalogItem> {
   empty: string;
   /** Кнопка или ссылка в правом нижнем углу карточки */
   action: (item: T) => string;
+  /** Показывать бейдж «от N лет» на карточке (по умолчанию — да) */
+  showAge?: boolean;
   /** Вызывается перед каждой перерисовкой сетки */
   onRender?: () => void;
 }
 
-function card<T extends CatalogItem>(item: T, index: number, action: string): string {
+function card<T extends CatalogItem>(item: T, index: number, action: string, showAge: boolean): string {
+  const imageStyle = [
+    item.imagePosition && `object-position:${item.imagePosition}`,
+    item.imageZoom && `transform:scale(${item.imageZoom})`,
+  ]
+    .filter(Boolean)
+    .join(';');
   const cover = item.image
-    ? `<img src="${asset(item.image)}" alt="" class="course__image" loading="lazy" />`
+    ? `<img src="${asset(item.image)}" alt="" class="course__image" loading="lazy"${imageStyle ? ` style="${imageStyle}"` : ''} />`
     : `<img src="${asset(item.icon)}" alt="" class="course__icon" />`;
   const tags = item.audience
-    .map((a) => `<li class="course__tag text-xs font-extrabold uppercase">${AUDIENCES[a]}</li>`)
+    .map((a) => `<li class="course__tag font-extrabold uppercase">${AUDIENCES[a]}</li>`)
     .join('');
 
   return `
     <article class="course animate-fade-up" style="animation-delay:${index * 50}ms" data-title="${item.title}">
-      <span class="course__age text-sm font-extrabold uppercase">от ${item.age} лет</span>
+      ${showAge ? `<span class="course__age text-sm font-extrabold uppercase">от ${item.age} лет</span>` : ''}
       <div class="course__cover course__cover--${item.tone}">${cover}</div>
       <ul class="course__tags">${tags}</ul>
       <h3 class="font-display font-bold text-2xl leading-tight m-0">${item.title}</h3>
@@ -69,7 +77,7 @@ export function initCatalog<T extends CatalogItem>(opts: CatalogOptions<T>): voi
     opts.onRender?.();
     counter.textContent = `${list.length} ${plural(list.length, opts.noun)}`;
     grid.innerHTML = list.length
-      ? list.map((item, i) => card(item, i, opts.action(item))).join('')
+      ? list.map((item, i) => card(item, i, opts.action(item), opts.showAge ?? true)).join('')
       : `<p class="courses__empty text-lg font-semibold animate-fade-in">${opts.empty}</p>`;
     filters.querySelectorAll<HTMLButtonElement>('.pill').forEach((btn) => {
       btn.setAttribute('aria-selected', String(btn.dataset.filter === current));

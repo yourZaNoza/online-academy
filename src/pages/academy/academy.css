@@ -256,62 +256,56 @@
   display: block;
 }
 
-/* ---------- Примеры работ ---------- */
+/* ---------- Лицензии: карусель ---------- */
 
-.tiles {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.tile {
-  display: grid;
-  place-items: center;
-  aspect-ratio: 410 / 390;
+.licenses__viewport {
   overflow: hidden;
-  transition: transform 0.25s, box-shadow 0.25s;
+  touch-action: pan-y;
 }
 
-.tile:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 24px rgb(46 26 71 / 0.1);
-}
-
-.tile__icon {
-  width: 52px;
-  height: 52px;
-}
-
-.tile__image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* ---------- Лицензии ---------- */
-
-.licenses {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 36px;
+.licenses__track {
+  display: flex;
+  gap: 28px;
   margin: 0;
   padding: 0;
   list-style: none;
+  transition: transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
 .license {
-  display: grid;
-  place-items: center;
+  flex: 0 0 calc((100% - 56px) / 3);
   aspect-ratio: 550 / 790;
   overflow: hidden;
 }
 
-.license__icon {
-  width: 110px;
-  height: 110px;
+.license__open {
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  border: 0;
+  background: none;
+  cursor: zoom-in;
+}
+
+.license__image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 8px 20px rgb(46 26 71 / 0.12);
+  user-select: none;
+  transition: transform 0.3s;
+}
+
+.license__open:hover .license__image,
+.license__open:focus-visible .license__image {
+  transform: scale(1.03);
+}
+
+.licenses__controls {
+  justify-content: center;
+  margin-top: 32px;
 }
 
 /* ---------- Отзывы ---------- */
@@ -466,15 +460,8 @@
 /* ---------- Адаптив ---------- */
 
 @media (max-width: 1024px) {
-  .tiles {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .licenses {
-    gap: 16px;
-  }
-
-  .review {
+  .review,
+  .license {
     flex-basis: calc((100% - 28px) / 2);
   }
 }
@@ -526,24 +513,13 @@
     left: 6px;
   }
 
-  .licenses {
-    grid-template-columns: 1fr;
-  }
-
+  .review,
   .license {
-    aspect-ratio: 4 / 3;
-  }
-
-  .review {
     flex-basis: 100%;
   }
 
   .pill {
     padding: 10px 20px;
-  }
-
-  .tiles {
-    gap: 12px;
   }
 }
 
@@ -586,49 +562,9 @@
   top: 50%;
   left: calc(100% - 36px);
   width: 186px;
-  transform: translateY(-50%);
+  translate: 0 -50%;
 }
 
-
-/* Примеры работ: птицы слева, заголовок и фильтры справа */
-.works__head {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 24px;
-  margin-bottom: 28px;
-}
-
-.works__controls {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-}
-
-.works__controls .tag-title {
-  margin-bottom: 20px;
-}
-
-.works__controls .pills {
-  justify-content: flex-end;
-  margin-bottom: 0;
-}
-
-.works__birds {
-  display: flex;
-  align-items: flex-end;
-  gap: 20px;
-  margin-bottom: -20px;
-}
-
-.bird--yellow {
-  height: 120px;
-  transform: scaleX(-1);
-}
-
-.bird--orange {
-  height: 170px;
-}
 
 /* Лицензии: заголовок по центру, звёзды по бокам */
 .licenses__head {
@@ -645,7 +581,7 @@
 .deco--star-green,
 .deco--star-red {
   top: 50%;
-  transform: translateY(-50%);
+  translate: 0 -50%;
 }
 
 .deco--star-green {
@@ -682,31 +618,6 @@
     top: -80px;
     right: -60px;
     width: 160px;
-  }
-
-  .works__head {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .works__controls {
-    align-items: flex-start;
-  }
-
-  .works__controls .pills {
-    justify-content: flex-start;
-  }
-
-  .works__birds {
-    margin-bottom: 0;
-  }
-
-  .bird--yellow {
-    height: 80px;
-  }
-
-  .bird--orange {
-    height: 112px;
   }
 }
 

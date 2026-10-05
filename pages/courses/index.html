@@ -25,7 +25,7 @@
       <section class="section section--paper page-intro">
         <span class="blob blob--yellow" style="width: 260px; height: 260px; top: -140px; right: 6%"></span>
 
-        <div class="container page-lead">
+        <div class="container page-lead page-lead--badge">
           <h1 class="font-display font-extrabold text-4xl sm:text-5xl leading-tight m-0 animate-fade-up">
             Курсы в художественной академии
           </h1>
@@ -34,11 +34,16 @@
             к поступлению.
           </p>
           <p class="counter text-sm font-bold text-ink-soft animate-fade-up [animation-delay:200ms]" id="course-count" aria-live="polite"></p>
+
+          <a href="#formats" class="formats-badge animate-fade-up [animation-delay:320ms]">
+            <span class="formats-badge__shape" aria-hidden="true"></span>
+            <span class="formats-badge__text">Ознакомьтесь<br />с&nbsp;тарифами!</span>
+          </a>
         </div>
       </section>
 
       <!-- ===== Каталог ===== -->
-      <section class="section section--paper courses-section">
+      <section class="section section--paper courses-section" id="courses">
         <div class="container">
           <div class="pills animate-fade-up [animation-delay:260ms]" id="course-filters" role="tablist" aria-label="Для кого курс"></div>
           <div class="courses-grid" id="course-grid"></div>
@@ -46,14 +51,19 @@
       </section>
 
       <!-- ===== Формат обучения ===== -->
-      <section class="section section--paper plans-section">
+      <section class="section section--paper plans-section" id="formats">
         <div class="container">
-          <div class="page-lead" data-reveal>
+          <div class="page-lead page-lead--badge" data-reveal>
             <h2 class="font-display font-extrabold text-4xl sm:text-5xl leading-tight m-0">Формат обучения</h2>
             <p class="text-lg mt-4 mb-0">
               Выберите удобный формат ознакомления с курсом. Стоимость формата не входит в стоимость курсов.
             </p>
             <p class="counter counter--dark text-sm font-bold text-ink-soft mb-10" id="plans-count"></p>
+
+            <a href="#courses" class="formats-badge formats-badge--blue">
+              <span class="formats-badge__shape" aria-hidden="true"></span>
+              <span class="formats-badge__text">Ознакомьтесь<br />с&nbsp;курсами!</span>
+            </a>
           </div>
           <div class="plans-grid" id="plans-grid"></div>
         </div>

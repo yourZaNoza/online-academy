@@ -19,7 +19,10 @@ export function renderHeader(root: HTMLElement, activePage: PageId): void {
       </a>
       <nav class="site-nav" id="site-nav" aria-label="Основное меню">
         <ul class="site-nav__list">${links}</ul>
-        <a href="${cta.href}" class="btn text-sm font-bold">${cta.label}</a>
+        <a href="${cta.href}" class="btn text-sm font-bold">
+          <img src="${asset('/icons/телефон-icon-by-Icon8.png')}" alt="" class="site-header__cta-icon" width="18" height="18" />
+          ${cta.label}
+        </a>
       </nav>
       <button class="burger" type="button" aria-controls="site-nav" aria-expanded="false" aria-label="Открыть меню">
         <span></span>

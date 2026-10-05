@@ -5,7 +5,6 @@ import { hasConsent, onConsent } from '../utils/consent';
 export function renderFooter(root: HTMLElement): void {
   const year = new Date().getFullYear();
   const { links } = CONTACTS;
-  const phoneHref = CONTACTS.phone.replace(/[^\d+]/g, '');
 
   root.innerHTML = `
     <div class="container">
@@ -37,10 +36,14 @@ export function renderFooter(root: HTMLElement): void {
         <div data-reveal data-reveal-delay="150">
           <h2 class="font-display font-bold text-xl m-0">Контакты</h2>
           <div class="contacts text-sm leading-relaxed">
-            <p>${CONTACTS.fullName}</p>
             <p><b>Сокращенное наименование образовательной организации:</b> ${CONTACTS.shortName}</p>
-            <p><b>Телефон:</b> <a href="tel:${phoneHref}" class="no-underline">${CONTACTS.phone}</a></p>
-            ${CONTACTS.schedule.map((s) => `<p><b>${s.label}:</b> ${s.value}</p>`).join('')}
+            ${CONTACTS.branches
+              .map(
+                (b) => `
+            <p>Телефон <b>${b.kind}</b>-академии: <a href="tel:${b.phone.replace(/[^\d+]/g, '')}" class="no-underline">${b.phone}</a></p>
+            <p>Режим работы <b>${b.kind}</b>-академии: ${b.hours}</p>`,
+              )
+              .join('')}
             <p><b>Email:</b> <a href="mailto:${CONTACTS.email}" class="underline underline-offset-2">${CONTACTS.email}</a></p>
             <p><b>Адрес:</b> ${CONTACTS.address}</p>
           </div>
@@ -50,8 +53,11 @@ export function renderFooter(root: HTMLElement): void {
           </div>
         </div>
       </div>
+    </div>
 
-      <div class="site-footer__bar">
+    <!-- Оранжевая полоса — во всю ширину страницы, содержимое — по сетке контейнера -->
+    <div class="site-footer__bar">
+      <div class="container site-footer__bar-inner">
         <button class="to-top" type="button" aria-label="Наверх">
           <img src="/icons/up.svg" alt="" />
         </button>

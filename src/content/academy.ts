@@ -1,6 +1,6 @@
 // Контент главной страницы. Чтобы добавить работу или отзыв — допишите объект в массив.
 
-import type { Tone } from './types';
+import type { Tone } from "./types";
 
 export interface Work {
   /** Путь к картинке из public/, например '/images/works/1-klass/ivanova.jpg' */
@@ -9,7 +9,25 @@ export interface Work {
   /** Иконка-заглушка, пока нет картинки */
   icon?: string;
   tone: Tone;
+  /** Автор, возраст и преподаватель — для карточки на странице «Галерея» */
+  author: WorkAuthor;
 }
+
+export interface WorkAuthor {
+  /** Фамилия и имя ученика */
+  name: string;
+  /** Возраст на момент работы, лет */
+  age: number;
+  /** ФИО преподавателя */
+  teacher: string;
+}
+
+/** Заготовка, пока у работы не указаны автор и преподаватель */
+export const WORK_AUTHOR_PLACEHOLDER: WorkAuthor = {
+  name: "Иванов Иван Иванович",
+  age: 10,
+  teacher: "Петров Петр Петрович",
+};
 
 export interface Review {
   name: string;
@@ -27,52 +45,122 @@ export type Grade = (typeof GRADES)[number];
 /** Класс, выбранный по умолчанию (как на макете) */
 export const DEFAULT_GRADE: Grade = 5;
 
-// Заглушки-плитки как на макете — заменяются реальными работами
-const PLACEHOLDERS: Work[] = [
-  { tone: 'peach', icon: '/icons/brush.svg' },
-  { tone: 'cream' },
-  { tone: 'cream' },
-  { tone: 'lavender', icon: '/icons/picture.svg' },
-  { tone: 'peach', icon: '/icons/gallery.svg' },
-  { tone: 'cream' },
-  { tone: 'lavender', icon: '/icons/nav.svg' },
-  { tone: 'peach', icon: '/icons/person.svg' },
-];
+/**
+ * Работы класса из папки public/images/<папка>: [имя файла без .png, название, автор] — в порядке показа.
+ * Автора можно не указывать — тогда на карточке в «Галерее» будет WORK_AUTHOR_PLACEHOLDER.
+ */
+const gallery = (dir: string, items: [string, string, WorkAuthor?][]): Work[] =>
+  items.map(([file, title, author], i) => ({
+    image: `/images/${dir}/${file}.png`,
+    title,
+    tone: (["peach", "cream", "lavender"] as const)[i % 3],
+    author: author ?? WORK_AUTHOR_PLACEHOLDER,
+  }));
 
 export const WORKS: Record<Grade, Work[]> = {
-  1: PLACEHOLDERS,
-  2: PLACEHOLDERS,
-  3: PLACEHOLDERS,
-  4: PLACEHOLDERS,
-  5: PLACEHOLDERS,
+  1: gallery("1_class", [
+    ["image 49", "Яблоко в акварели"],
+    ["image 48", "Овощи в акварели"],
+    ["image 51", "Построение натюрморта"],
+    ["image 56", "Стеклянная струя"],
+    ["image 55", "Гора Кольцо"],
+    ["image 46", "Натюрморт с вазой в акварели"],
+    ["image 47", "Тыква в акварели"],
+    [
+      "image 54",
+      "Декоративный натюрморт",
+      {
+        name: "Челнокова Кира",
+        age: 10,
+        teacher: "Трусова Виктория Викторовна",
+      },
+    ],
+  ]),
+  2: gallery("2_class", [
+    ["image 41", "Город в графике"],
+    ["image 45", "Декоративный натюрморт"],
+    ["image 52", "Этюд: овощи на доске"],
+    ["image 27", "Драпировка, рисунок"],
+    ["image 40", "Натюрморт в акварекарандашли по-сырому"],
+    ["image 43", "Композиция «Коллонада»"],
+    ["image 50", "Геометрические тела"],
+    ["image 39", "Натюрморт из трех предметов с драпировкой"],
+  ]),
+  3: gallery("3_class", [
+    ["image 30", "Кувшин, куб и яблоко, рисунок"],
+    ["image 23", "Лиса в пастели"],
+    ["image 25", "Драпировка, акварель"],
+    ["image 36", "Ваза и пиалы, рисунок"],
+    ["image 24", "Натюрморт с цветами и тыквой"],
+    ["image 28", "Натюрморт с вазой, грибом и рябиной"],
+    ["image 35", "Тыквы и свеча"],
+    ["image 33", "Натюрморт с чёрным кувшином и тыквой"],
+  ]),
+  4: gallery("4_class", [
+    ["image 62", "Веранда с букетом и кошкой"],
+    ["image 58", "Бутылка и кубы на фоне драпировки, рисунок"],
+    ["image 22", "Ваза, куб и яблоко, рисунок"],
+    ["image 37", "Декоративный натюрморт с чайником"],
+    ["image 34", "Натюрморт с кофемолкой и кувшином"],
+    ["image 29", "Нарзанная галерея"],
+    ["image 31", "Город в графике"],
+    ["image 26", "Натюрморт с парусником и ракушками"],
+  ]),
+  5: gallery("5_class", [
+    ["image 14", "Натюрморт с кувшином, бутылкой и кубом"],
+    ["image 15", "Русский натюрморт"],
+    ["image 19", "Натюрморт с кувшином и тыквой"],
+    ["image 61", "Аполлон Бельведерский в профиль"],
+    ["image 17", "Декоративный натюрморт"],
+    ["image 16", "Осьминог в морских водорослях"],
+    ["image 57", "Осенний лес"],
+    ["image 18", "Цапля в декоративном панно"],
+  ]),
 };
 
-export const LICENSES: { tone: Tone; icon: string; image?: string; title?: string }[] = [
-  { tone: 'cream', icon: '/icons/camera.svg' },
-  { tone: 'peach', icon: '/icons/gallery.svg' },
-  { tone: 'lavender', icon: '/icons/point.svg' },
+export interface License {
+  /** Путь к скану из public/ */
+  image: string;
+  title: string;
+}
+
+// Чтобы добавить документ — положите файл в public/images/img_licenses и допишите строку
+const LICENSE_DIR = "/images/img_licenses";
+export const LICENSES: License[] = [
+  {
+    image: `${LICENSE_DIR}/реестр 1.png`,
+    title: "Выписка из реестра лицензий, стр. 1",
+  },
+  {
+    image: `${LICENSE_DIR}/реестр 2.png`,
+    title: "Выписка из реестра лицензий, стр. 2",
+  },
+  ...[1, 2, 3, 4, 5, 6, 7].map((n) => ({
+    image: `${LICENSE_DIR}/грамота ${n}.jpg`,
+    title: `Грамота ${n}`,
+  })),
 ];
 
 export const REVIEWS: Review[] = [
   {
-    name: 'Наталия Лауэрвальд',
-    text: 'Дочь занимается у вас в первом классе уже 9-й месяц, мы все очень довольны. Нравится структура — есть программа, всё чётко и понятно.',
-    date: '01.01.2026',
+    name: "Наталия Лауэрвальд",
+    text: "Дочь занимается у вас в первом классе уже 9-й месяц, мы все очень довольны. Нравится структура — есть программа, всё чётко и понятно.",
+    date: "01.01.2026",
     rating: 5,
-    link: '#',
+    link: "#",
   },
   {
-    name: 'Анастасия Бородина',
-    text: 'Дочь уже около года занимается в художественной школе онлайн. Занятия проходят очень интересно, задают домашние задания.',
-    date: '01.04.2025',
+    name: "Анастасия Бородина",
+    text: "Дочь уже около года занимается в художественной школе онлайн. Занятия проходят очень интересно, задают домашние задания.",
+    date: "01.04.2025",
     rating: 5,
-    link: '#',
+    link: "#",
   },
   {
-    name: 'Елена Гольдберг',
-    text: 'Занимаемся второй год. Замечательные преподаватели, отлично выстроенная система обратной связи. Программа академическая.',
-    date: '01.04.2025',
+    name: "Елена Гольдберг",
+    text: "Занимаемся второй год. Замечательные преподаватели, отлично выстроенная система обратной связи. Программа академическая.",
+    date: "01.04.2025",
     rating: 5,
-    link: '#',
+    link: "#",
   },
 ];

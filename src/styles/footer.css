@@ -123,12 +123,16 @@
 }
 
 .site-footer__bar {
+  padding: 26px 0 calc(26px + env(safe-area-inset-bottom, 0px));
+  background: var(--color-orange);
+  color: #fff;
+}
+
+.site-footer__bar-inner {
   display: flex;
   align-items: center;
   gap: 16px 32px;
-  padding: 26px 64px calc(26px + env(safe-area-inset-bottom, 0px));
-  background: var(--color-orange);
-  color: #fff;
+  padding-inline: 64px;
 }
 
 /* Копирайт, под ним — ссылки на документы */
@@ -167,9 +171,9 @@
     padding-inline: 0;
   }
 
-  .site-footer__bar {
+  .site-footer__bar-inner {
     flex-direction: column-reverse;
     align-items: flex-start;
-    padding-inline: 24px;
+    padding-inline: 0;
   }
 }

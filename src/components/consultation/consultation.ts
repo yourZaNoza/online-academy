@@ -84,7 +84,7 @@ export function renderConsultation(root: HTMLElement): void {
           <p>Или позвоните по телефону <a href="tel:${phoneHref}" class="font-extrabold whitespace-nowrap">${CONTACTS.phone}</a></p>
           <figure class="artwork">
             <img
-              src="/images/image%2011.png"
+              src="/images/site4.png"
               alt="Работа ученика академии: натюрморт с самоваром, кувшинами и фруктами"
               class="artwork__img"
               loading="lazy"

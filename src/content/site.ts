@@ -6,6 +6,7 @@ export type PageId =
   | 'courses'
   | 'masterclasses'
   | 'contests'
+  | 'gallery'
   | 'contacts'
   | 'agreement'
   | 'privacy'
@@ -25,7 +26,7 @@ export const NAV_ITEMS: NavItem[] = [
   { id: 'courses', label: 'Курсы', href: '/courses/' },
   { id: 'masterclasses', label: 'Мастер-классы', href: '/masterclasses/' },
   { id: 'contests', label: 'Конкурсы', href: '/contests/' },
-  { id: 'contacts', label: 'Связь', href: '/contacts/' },
+  { id: 'gallery', label: 'Галерея', href: '/gallery/' },
 ];
 
 export interface HeaderCta {
@@ -34,25 +35,25 @@ export interface HeaderCta {
 }
 
 /** Кнопка справа в шапке. Для отдельных страниц можно задать свою. */
-export const DEFAULT_CTA: HeaderCta = { label: 'Записаться на консультацию', href: '/contacts/' };
+export const DEFAULT_CTA: HeaderCta = { label: 'Консультация', href: '/contacts/' };
 
-export const PAGE_CTA: Partial<Record<PageId, HeaderCta>> = {
-  courses: { label: 'Записаться на пробный урок', href: '/#consultation' },
-};
+export const PAGE_CTA: Partial<Record<PageId, HeaderCta>> = {};
 
 // &nbsp; — неразрывный пробел: слова по обе стороны не разъедутся на разные строки
 export const CONTACTS = {
   fullName:
     'Автономная некоммерческая организация профессионального обучения и дополнительного профессионального образования «Кисловодская Академия&nbsp;искусств»',
   shortName: 'АНО ПО и ДПО «Кисловодская Академия&nbsp;искусств»',
-  phone: '8 800 555 35 35',
-  schedule: [
-    { label: 'Режим работы ОНЛАЙН', value: 'пн–пт, 9:00–18:00 (Мск)' },
-    { label: 'Режим работы оффлайн', value: 'пн–сб, 9:00–19:00 (Мск)' },
+  /** Основной телефон (блок консультации) — онлайн-академия */
+  phone: '8 928 008 22 25',
+  /** Телефоны и режим работы в подвале; kind выделяется жирным */
+  branches: [
+    { kind: 'оффлайн', phone: '8 928 346-48-27', hours: 'пн–сб 9:00–19:00 (Мск)' },
+    { kind: 'онлайн', phone: '8 928 008 22 25', hours: 'пн–пт 9:00–18:00 (Мск)' },
   ],
   email: 'kis-online-akademia@yandex.ru',
   /** Телефон из сообщения об ошибке отправки формы */
-  hotline: '8 800 555 35 35',
+  hotline: '8 928 008 22 25',
   address: '357700, Ставропольский край, г. Кисловодск, пр.&nbsp;Победы,&nbsp;37А',
   rating: '4,9',
   links: {

@@ -2,14 +2,15 @@ import { bootstrap } from '../../layout/bootstrap';
 import { $ } from '../../utils/dom';
 import { initReveal } from '../../utils/reveal';
 import { renderConsultation } from '../../components/consultation/consultation';
+import { renderWorks } from '../../components/works/works';
 import { initReviews } from './reviews';
-import { initWorks, renderLicenses } from './works';
+import { initLicenses } from './licenses';
 import './academy.css';
 
 bootstrap('academy');
 
-initWorks($('#works-filters'), $('#works-grid'));
-renderLicenses($('#licenses-grid'));
+renderWorks($('#works'));
+initLicenses($('#licenses'));
 initReviews($('#reviews'));
 renderConsultation($('#consultation'));
 

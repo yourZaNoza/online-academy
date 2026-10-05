@@ -2,6 +2,7 @@
 
 import { bootstrap } from '../../layout/bootstrap';
 import { MASTERCLASSES } from '../../content/masterclasses';
+import { TEACHER_PLACEHOLDER } from '../../content/types';
 import { initCatalog } from '../../components/catalog/catalog';
 import { initDetails, moreButton, type Details } from '../../components/catalog/details';
 import { $ } from '../../utils/dom';
@@ -20,6 +21,7 @@ function masterclassDetails(title: string): Details | null {
     itemLabel: 'Шаг',
     facts: [
       ['Стоимость', rub(item.price)],
+      ['Преподаватель', item.teacher ?? TEACHER_PLACEHOLDER],
       ['Длительность', item.duration],
       ['Возраст', `от ${item.age} лет`],
       ['Формат', item.format],
@@ -35,10 +37,11 @@ initCatalog({
   filters: $('#masterclass-filters'),
   grid,
   counter: $('#masterclass-count'),
-  audiences: ['kids', 'adults', 'beginners', 'masters'],
+  audiences: ['easy', 'medium', 'advanced'],
   allLabel: 'Все курсы',
   noun: ['мастер-класс', 'мастер-класса', 'мастер-классов'],
   empty: 'Скоро здесь появятся новые мастер-классы. Оставьте заявку — подскажем, с чего начать.',
   action: moreButton,
+  showAge: false,
   onRender: details.close,
 });

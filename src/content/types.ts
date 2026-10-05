@@ -3,15 +3,15 @@
 /** Цвет фона карточки/обложки */
 export type Tone = 'peach' | 'cream' | 'lavender';
 
-/** Для кого курс или мастер-класс — по этим меткам работают фильтры каталога */
-export type Audience = 'kids' | 'adults' | 'applicants' | 'beginners' | 'masters';
+/** Метки карточки: для кого и какой уровень — по ним работают фильтры каталога */
+export type Audience = 'beginners' | 'applicants' | 'easy' | 'medium' | 'advanced';
 
 export const AUDIENCES: Record<Audience, string> = {
-  kids: 'Для детей',
-  adults: 'Для взрослых',
-  applicants: 'Для поступающих',
   beginners: 'Для начинающих',
-  masters: 'Для мастеров',
+  applicants: 'Для поступающих',
+  easy: 'Легкий уровень',
+  medium: 'Средний уровень',
+  advanced: 'Продвинутый уровень',
 };
 
 /** Карточка каталога: курс или мастер-класс */
@@ -28,7 +28,16 @@ export interface CatalogItem {
   icon: string;
   /** Картинка обложки из public/ (необязательно) */
   image?: string;
+  /** Какая часть картинки видна на обложке, если она не помещается целиком: 'top', 'bottom'. По умолчанию — центр */
+  imagePosition?: string;
+  /** Увеличение картинки на обложке, чтобы спрятать края (рамку): 1.2 — на 20% крупнее */
+  imageZoom?: number;
+  /** ФИО преподавателя; пока не указано — показывается TEACHER_PLACEHOLDER */
+  teacher?: string;
 }
+
+/** Заготовка, пока у курса или мастер-класса не указан преподаватель */
+export const TEACHER_PLACEHOLDER = 'Иванов Иван Иванович';
 
 /** Раздел программы в блоке «Подробнее»: модуль курса или этап мастер-класса */
 export interface ProgramModule {
