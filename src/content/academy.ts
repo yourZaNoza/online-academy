@@ -35,8 +35,8 @@ export interface Review {
   date: string;
   rating: number;
   link: string;
-  /** Скриншот отзыва из соцсети (необязательно) */
-  screenshot?: string;
+  /** Фото к отзыву из public/ (необязательно) */
+  photo?: string;
 }
 
 export const GRADES = [1, 2, 3, 4, 5] as const;
@@ -143,24 +143,65 @@ export const LICENSES: License[] = [
 
 export const REVIEWS: Review[] = [
   {
-    name: "Наталия Лауэрвальд",
-    text: "Дочь занимается у вас в первом классе уже 9-й месяц, мы все очень довольны. Нравится структура — есть программа, всё чётко и понятно.",
-    date: "01.01.2026",
+    name: "Зоя Никифорова",
+    text: "Потрясающая академия с великолепными преподавателями и бесконечно талантливыми детьми. Добрая и семейная атмосфера при этом никак не мешает профессиональному погружению в мир искусства.",
+    date: "08.07.2025",
     rating: 5,
-    link: "#",
+    link: "https://yandex.ru/maps/org/69341118567/reviews?reviews%5BpublicId%5D=zhamnzphw0d6k1bru2w0rr5qtg&si=jfger70b3bjny3zw3hf2j47x7m&utm_source=review",
+    photo: "/images/reviews/nikiforova-zoya.jpg",
   },
   {
-    name: "Анастасия Бородина",
-    text: "Дочь уже около года занимается в художественной школе онлайн. Занятия проходят очень интересно, задают домашние задания.",
-    date: "01.04.2025",
+    name: "Елизавета Х",
+    text: "Бесконечно рада, что мой ребёнок занимается в этой Академии искусств. Очень благодарна Елене Геннадьевне за то, что проявила участие и организовала занятия по рисованию для моего особенного ребёнка. Огромное спасибо нашему педагогу Татьяне Алексеевне за терпение и мягкость.",
+    date: "27.01.2024",
     rating: 5,
-    link: "#",
+    link: "https://yandex.ru/maps/org/69341118567/reviews?reviews%5BpublicId%5D=KhubievaElizaveta&si=jfger70b3bjny3zw3hf2j47x7m&utm_source=review",
   },
   {
-    name: "Елена Гольдберг",
-    text: "Занимаемся второй год. Замечательные преподаватели, отлично выстроенная система обратной связи. Программа академическая.",
-    date: "01.04.2025",
+    name: "Вероника Лященко",
+    text: "Это лучшая академия города. Все преподаватели, профисионалы своего дела. Если вас тянет к искусству, лучше всего развивать его именно здесь",
+    date: "21.06.2025",
     rating: 5,
-    link: "#",
+    link: "https://yandex.ru/maps/org/69341118567/reviews?reviews%5BpublicId%5D=e29dqr5x20e0w971zzhvzg1c9c&si=jfger70b3bjny3zw3hf2j47x7m&utm_source=review",
+    photo: "/images/reviews/lyashchenko.jpg",
+  },
+  {
+    name: "Анна Джигарханова",
+    text: "Трусовой Виктории Викторовне, Спасибо за ваш труд, вы преподаватель от бога, дай бог вам здоровья и долгих лет жизни!!!",
+    date: "01.08.2026",
+    rating: 5,
+    link: "https://vk.ru/wall-219874819_424",
+    photo: "/images/reviews/dzhigarkhanova.jpg",
+  },
+  {
+    name: "Гриша Перельман",
+    text: "Мы рады видеть, как наши дети находят себя через музыку, танцы и изобразительное искусство. Профессиональные педагоги создают тёплую и поддерживающую атмосферу, где наши дети раскрывают свои таланты и чувствуют себя в своей тарелке. Это место, где искусство становится важной частью их жизни, и мы благодарны за это каждый день",
+    date: "03.02.2024",
+    rating: 5,
+    link: "https://yandex.ru/maps/org/69341118567/reviews?reviews%5BpublicId%5D=r3kc0dfphm1nbu4gf07d59cx8w&si=jfger70b3bjny3zw3hf2j47x7m&utm_source=review",
+  },
+  {
+    name: "Faina Nikiforova",
+    text: "Чудесная школа! В ней я смогла расширить не только свои навыки рисования, но и больше узнала о мире искусства. Преподаватели - настоящие профессионалы и прекрасные люди, которые всегда готовы помочь и обсудить любые вопросы.",
+    date: "10.06.2025",
+    rating: 5,
+    link: "https://yandex.ru/maps/org/69341118567/reviews?reviews%5BpublicId%5D=ezvy8dey5wyb4ktbjwzwyqhjmr&si=jfger70b3bjny3zw3hf2j47x7m&utm_source=review",
+    photo: "/images/reviews/nikiforova-faina.jpg",
+  },
+  {
+    name: "Базилевс",
+    text: "Был с дочкой на мастер-классе по рисованию. Академия понравилась. Внимательные педагоги.",
+    date: "03.02.2024",
+    rating: 5,
+    link: "https://yandex.ru/maps/org/69341118567/reviews?reviews%5BpublicId%5D=213xjvh0d2cvj8uf8fawqhpanr&si=jfger70b3bjny3zw3hf2j47x7m&utm_source=review",
+    photo: "/images/reviews/bazilevs.jpg",
+  },
+  {
+    name: "Роман Рыжков",
+    text: "Очень красивое чистое и опрятное место я рад что здесь учусь",
+    date: "02.02.2024",
+    rating: 5,
+    link: "https://yandex.ru/maps/org/69341118567/reviews?reviews%5BpublicId%5D=7ec28w1cw1d67fzt89p94xq314&si=jfger70b3bjny3zw3hf2j47x7m&utm_source=review",
+    photo: "/images/reviews/ryzhkov.jpg",
   },
 ];

@@ -18,10 +18,11 @@ $('#stub').innerHTML = `
       <span class="tag tag--orange">${title}</span>
       <span class="tag tag--yellow">скоро здесь</span>
     </h1>
-    <p class="text-lg m-0">Раздел в разработке. А пока загляните в наши курсы и мастер-классы или оставьте заявку на консультацию.</p>
+    <p class="text-lg m-0">Раздел в разработке. А пока загляните в наши курсы, мастер-классы и галерею работ учеников или оставьте заявку на консультацию.</p>
     <div class="stub__actions">
       <a href="/courses/" class="btn text-sm font-bold">Смотреть курсы</a>
       <a href="/masterclasses/" class="btn text-sm font-bold">Смотреть мастер-классы</a>
+      <a href="/gallery/" class="btn text-sm font-bold">Смотреть галерею</a>
       <a href="/contacts/" class="btn btn--ghost text-sm font-bold">Получить консультацию</a>
     </div>
   </div>`;

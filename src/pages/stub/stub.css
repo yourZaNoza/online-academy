@@ -4,9 +4,13 @@
   display: grid;
   justify-items: start;
   gap: 8px;
-  max-width: 720px;
   min-height: 50vh;
   align-content: center;
+}
+
+/* Ширина ограничена только у текста — кнопки ниже помещаются в один ряд */
+.stub > p {
+  max-width: 720px;
 }
 
 .stub__icon {
@@ -16,6 +20,7 @@
 
 .stub__actions {
   display: flex;
+  /* На узких экранах кнопки переносятся на следующую строку */
   flex-wrap: wrap;
   gap: 12px;
   margin-top: 24px;

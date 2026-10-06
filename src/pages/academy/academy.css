@@ -303,7 +303,8 @@
   transform: scale(1.03);
 }
 
-.licenses__controls {
+.licenses__controls,
+.reviews__controls {
   justify-content: center;
   margin-top: 32px;
 }
@@ -415,22 +416,6 @@
   --review-line: var(--color-ink);
 }
 
-.review__author {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.review__avatar {
-  display: grid;
-  place-items: center;
-  width: 42px;
-  height: 42px;
-  border: 1.5px solid var(--review-line);
-  border-radius: 50%;
-  background: var(--review-soft);
-}
-
 .review__text {
   flex: 1;
   margin: 0;
@@ -438,7 +423,7 @@
 
 .review__shot {
   width: 100%;
-  height: 110px;
+  height: 160px;
   overflow: hidden;
   border: 1.5px solid var(--review-line);
   border-radius: 14px;
